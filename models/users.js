@@ -6,11 +6,28 @@ const userSchema = new Schema(
   {
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    name: { type: String, required: true },
-    address: { type: String, required: true },
+    name: {
+      firstName: { type: String, required: true },
+      lastName: { type: String, required: true },
+    },
     age: { type: Number, required: true, min: 16 },
     gender: { type: String, required: true },
+    picture: { type: String },
     com_points: { type: Number, default: 0 },
+    address: {
+      street: {
+        number: { type: Number, required: true },
+        name: { type: String, required: true },
+      },
+      city: { type: String, required: true },
+      state: { type: String },
+      country: { type: String, required: true },
+      postcode: { type: Number, required: true },
+      coordinates: {
+        latitude: { type: Number, default: 0 },
+        longitude: { type: Number, default: 0 },
+      },
+    },
     orders: {
       type: [{ type: Schema.Types.ObjectId, ref: "Order" }],
       default: [],
@@ -24,9 +41,11 @@ const userSchema = new Schema(
       default: [],
     },
     currentCart: {
-        type: [{id:{ type: Schema.Types.ObjectId, ref: "Vote" }, quantity: Number}],
-        default: [],
-      },
+      type: [
+        { id: { type: Schema.Types.ObjectId, ref: "Vote" }, quantity: Number },
+      ],
+      default: [],
+    },
   },
   {
     timestamps: {
