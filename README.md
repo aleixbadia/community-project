@@ -1,10 +1,6 @@
 # Community Designs (?)
 
-
-
 ## Description
-
-
 
 Platform for uploading, voting and purchasing items with images from user designs (like t-shirts, mugs, etc).
 Contains a database with collections for users, designs, votes and purchases linked many to many by ids
@@ -14,17 +10,13 @@ Contains a database with collections for users, designs, votes and purchases lin
 - Votes
 - Purchases
 
-
-
 ## User stories
-
-
 
 - **404** - As a user I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault
 
 - **500** - As a user I want to see a nice error page when the super team screws it up so that I know that is not my fault
 
-- **homepage** - As a user I want to be able to access the homepage . 
+- **homepage** - As a user I want to be able to access the homepage .
 
 - **sign up** - As a user I want to sign up on the web page so that I can vote designs.
 
@@ -40,35 +32,31 @@ Contains a database with collections for users, designs, votes and purchases lin
 
 - **checkout** - As a user I want to see the card and redirect to payment page.
 
-  
-
 ## Server Routes
 
-| **Method** | **Route**                    | **Description**                                              | Request  - Body                                          |
-| ---------- | ---------------------------- | ------------------------------------------------------------ | -------------------------------------------------------- |
-| `GET`      | `/`                          | Main page route.  Renders home `index` view. With links to vote and buy |                                                          |
-| `GET`      | `/login`                     | Renders `login` form view.                                   |                                                          |
-| `POST`     | `/login`                     | Sends Login form data to the server.                         | { email, password }                                      |
-| `GET`      | `/signup`                    | Renders `signup` form view.                                  |                                                          |
-| `POST`     | `/signup`                    | Sends Sign Up info to the server and creates user in the DB. | {  email, password  }                                    |
-| `GET`      | `/profile/:username`         | Private route. Renders `profile` form view.                  |                                                          |
-| `POST`     | `/profile/:username`         | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, [firstName], [lastName], [imageUrl] } |
-| `GET`      | `/profile/uploads`           | Private route. Render the `uploads` view with designs by user in DB |                                                          |
-| `POST`     | `/profile/uploads/`          | Private route. Adds a new design for the current user.       | { uploaded file }                                        |
-| `DELETE`   | `/profile/uploads/:designId` | Private route. Deletes the existing design from the current user. |                                                          |
-| `GET`      | `/vote`                      | Renders `design-list` view.                                  |                                                          |
-| `GET`      | `/vote/:id`                  | Render `design-details ` view for the particular design.     |                                                          |
-| `POST`     | `/vote/:id`                  | Sends`vote-data ` to database.                               |                                                          |
-| `GET`      | `/buy/`                      | Render `buy-list ` view for the designs.                     |                                                          |
-| `GET`      | `/buy/:id`                   | Render `buy-details ` view for the particular design. Button to add to cart |                                                          |
-| `GET`      | `/cart/:id`                  | Redirects to cart.                                           |                                                          |
-| `GET`      | `/checkout/:id`              | Form to input pay & delivery info                            |                                                          |
-| `POST`     | `/checkout/:id`              | Redirect to pay platform.                                    |                                                          |
-
-
-
-
-
+| **Method** | **Route**                         | **Description**                                                             | Request - Body                                           |
+| ---------- | --------------------------------- | --------------------------------------------------------------------------- | -------------------------------------------------------- |
+| `GET`      | `/`                               | Main page route. Renders home `index` view. With links to vote and buy      |                                                          |
+| `GET`      | `/login`                          | Renders `login` form view.                                                  |                                                          |
+| `POST`     | `/login`                          | Sends Login form data to the server.                                        | { email, password }                                      |
+| `GET`      | `/signup`                         | Renders `signup` form view.                                                 |                                                          |
+| `POST`     | `/signup`                         | Sends Sign Up info to the server and creates user in the DB.                | { email, password }                                      |
+| `GET`      | `/designers`                      | Renders `users` list form view.                                             |                                                          |
+| `GET`      | `/profile/:username`              | Unprotected route. Renders `design lists` form chosen profile.              |                                                          |
+| `GET`      | `/profile/:username`              | Renders public `profile` form view.                                         |                                                          |
+| `GET`      | `/profile/user/:username`         | Private route. Sends edit-profile info to server and updates user in DB.    | { email, password, [firstName], [lastName], [imageUrl] } |
+| `POST`     | `/profile/:username`              | Private route. Sends edit-profile info to server and updates user in DB.    | { email, password, [firstName], [lastName], [imageUrl] } |
+| `GET`      | `/profile/user/:username/upload`  | Private route. Render the `uploads` view with designs by user in DB         |                                                          |
+| `POST`     | `/profile/user/:username/upload`  | Private route. Adds a new design for the current user.                      | { uploaded file }                                        |
+| `DELETE`   | `/profile/user/uploads/:designId` | Private route. Deletes the existing design from the current user.           |                                                          |
+| `GET`      | `/vote`                           | Renders `design-list` view.                                                 |                                                          |
+| `GET`      | `/vote/:id`                       | Render `design-details ` view for the particular design.                    |                                                          |
+| `POST`     | `/vote/:id`                       | Sends`vote-data ` to database.                                              |                                                          |
+| `GET`      | `/buy/`                           | Render `buy-list ` view for the designs.                                    |                                                          |
+| `GET`      | `/buy/:id`                        | Render `buy-details ` view for the particular design. Button to add to cart |                                                          |
+| `GET`      | `/cart/:id`                       | Redirects to cart.                                                          |                                                          |
+| `GET`      | `/checkout/:id`                   | Form to input pay & delivery info                                           |                                                          |
+| `POST`     | `/checkout/:id`                   | Redirect to pay platform.                                                   |                                                          |
 
 ## Models & schemas
 
@@ -98,7 +86,7 @@ Contains a database with collections for users, designs, votes and purchases lin
     Total_sold : Number,
     Votes : [voteId],
     Total_rating : { type: Number, required: true, default: 0 },
-    CreatorId: ObjectId           
+    CreatorId: ObjectId
 }
 ```
 
@@ -125,13 +113,9 @@ Contains a database with collections for users, designs, votes and purchases lin
 }
 ```
 
-
-
 ## Backlog
 
 [See the Trello board.](https://trello.com/b/6ZU07s3r/m2project)
-
-
 
 ## Links
 
@@ -150,4 +134,3 @@ Url to repository and to deployed project
 Url to the presentation slides
 
 [Slides Link](https://docs.google.com/presentation/d/1P5FIi0vHZBUcgUtmt1M4_lLCO5dwdJ4UOgtJa4ehGfk/edit?usp=sharing)
-
