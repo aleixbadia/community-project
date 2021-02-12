@@ -3,9 +3,11 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var hbs = require('hbs');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var shopRouter = require('./routes/shop');
+var authRouter = require('./routes/auth');
+var profileRouter = require('./routes/profile');
 
 var app = express();
 
@@ -19,8 +21,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+// Register the location for handlebars partials here:
+hbs.registerPartials(path.join(__dirname, 'views/partials'));
+
+app.use('/', shopRouter);
+app.use('/auth', authRouter);
+app.use('/profile', profileRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
