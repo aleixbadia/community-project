@@ -5,17 +5,9 @@ const Schema = mongoose.Schema;
 const designSchema = new Schema(
   {
     userId: { type: Schema.Types.ObjectId, ref: "User" },
-    url : { type: String, required: true }, //cloudinary
-    name : { type: String, required: true },
-    description : { type: String, required: true },
-    orders : {
-        type: [{ type: Schema.Types.ObjectId, ref: "Order" }],
-        default: [],
-      },
-    votes : {
-        type: [{ type: Schema.Types.ObjectId, ref: "Vote" }],
-        default: [],
-      },
+    url: { type: String, required: true }, //cloudinary
+    name: { type: String, required: true },
+    description: { type: String, required: true },
   },
   {
     timestamps: {

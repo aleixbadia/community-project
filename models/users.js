@@ -15,10 +15,7 @@ const userSchema = new Schema(
     picture: { type: String },
     com_points: { type: Number, default: 0 },
     address: {
-      street: {
-        number: { type: Number, required: true },
-        name: { type: String, required: true },
-      },
+      street: { type: String, required: true },
       city: { type: String, required: true },
       state: { type: String },
       country: { type: String, required: true },
@@ -27,18 +24,6 @@ const userSchema = new Schema(
         latitude: { type: Number, default: 0 },
         longitude: { type: Number, default: 0 },
       },
-    },
-    orders: {
-      type: [{ type: Schema.Types.ObjectId, ref: "Order" }],
-      default: [],
-    },
-    designs: {
-      type: [{ type: Schema.Types.ObjectId, ref: "Design" }],
-      default: [],
-    },
-    votes: {
-      type: [{ type: Schema.Types.ObjectId, ref: "Vote" }],
-      default: [],
     },
     currentCart: {
       type: [
