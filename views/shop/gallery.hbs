@@ -1,3 +1,14 @@
 <h2>Products gallery</h2>
-<a href="/products/designId">Buy this product</a>
-<a href="/vote/designId">Vote this product</a>
+<div class="gallery">
+    {{#each data}}
+    <div class="card">
+        <h3>{{this.name}}</h3>
+        <img src="{{this.url}}" alt="{{this.name}}">
+        {{#if this.vote}}
+            <a href="/vote/designId">Vote this product</a>
+        {{else}}
+            <a href="/products/designId">Buy this product</a>
+        {{/if}}
+    </div>
+    {{/each}}
+</div>
