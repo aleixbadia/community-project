@@ -1,6 +1,6 @@
 <h2>Sign-up page</h2>
 
-<form action='/endPointName' method='POST'>
+<form action='/auth/signup' method='POST'>
 
   <label for='firstName'>First name</label>
   <input type='text' name='firstName'>
@@ -12,10 +12,14 @@
   <input type='text' name='email'>
 
   <label for='password'>Password</label>
-  <input type='text' name='password'>
+  <input type='password' name='password'>
 
   <label for='age'>Age</label>
   <input type='number' name='age'>
+
+  <label for='gender'>Gender</label>
+  <input type='text' name='gender'>
+
   <p>Address</p>
   <label for='street'>Street</label>
   <input type='text' name='street'>
@@ -32,8 +36,8 @@
   <label for='postcode'>Postcode</label>
   <input type='text' name='postcode'>
 
-  <label for='profilePicture'>Profile picture</label>
-  <input type='text' name='profilePicture'>
+  <label for='picture'>Profile picture</label>
+  <input type='text' name='picture'>
 
   <button type='submit'>Submit</button>
 </form>

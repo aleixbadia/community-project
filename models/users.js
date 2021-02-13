@@ -12,14 +12,14 @@ const userSchema = new Schema(
     },
     age: { type: Number, required: true, min: 16 },
     gender: { type: String, required: true },
-    picture: { type: String },
+    picture: { type: String, default: "" },
     com_points: { type: Number, default: 0 },
     address: {
       street: { type: String, required: true },
       city: { type: String, required: true },
       state: { type: String },
       country: { type: String, required: true },
-      postcode: { type: Number, required: true },
+      postcode: { type: String, required: true },
       coordinates: {
         latitude: { type: Number, default: 0 },
         longitude: { type: Number, default: 0 },
