@@ -1,43 +1,58 @@
-<h2>Sign-up page</h2>
+<h2 class="signup-h2">Please fill up this form</h2>
 
 <form action='/auth/signup' method='POST'>
 
-  <label for='firstName'>First name</label>
-  <input type='text' name='firstName'>
+  <div class="signup-name">
+    <label for='firstName'>First name</label>
+      <input type='text' name='firstName'>
+    <label for='lastName'>Last name</label>
+      <input type='text' name='lastName'>
+  </div>
 
-  <label for='lastName'>Last name</label>
-  <input type='text' name='lastName'>
+  <div class="singup-mail">
+    <label for='email'>Email</label>
+      <input type='text' name='email'>
+    <label for='password'>Password</label>
+      <input type='password' name='password'>
+  </div>
 
-  <label for='email'>Email</label>
-  <input type='text' name='email'>
-
-  <label for='password'>Password</label>
-  <input type='password' name='password'>
-
+  <div class="singup-data">
   <label for='age'>Age</label>
-  <input type='number' name='age'>
-
+    <input type='number' name='age'>
   <label for='gender'>Gender</label>
-  <input type='text' name='gender'>
+    <select name='gender'>
+      <option value="female">Female</option>
+      <option value="male">Male</option>
+      <option value="non-binary">Non binary</option>
+      <option value="other">Other</option>
+      <option value="undefined">Undefined</option>
+      <option value="na">I'd prefer not saying</option>
+    </select>
+  </div>
 
-  <p>Address</p>
-  <label for='street'>Street</label>
-  <input type='text' name='street'>
+  <div class="signup-city">
+    <label for='street'>Street</label>
+      <input type='text' name='street'>
 
-  <label for='city'>City</label>
-  <input type='text' name='city'>
+    <label for='city'>City</label>
+      <input type='text' name='city'>
 
-  <label for='state'>State</label>
-  <input type='text' name='state'>
+    <label for='postcode'>Postcode</label>
+      <input type='text' name='postcode'>
+  </div>
+  
+  <div class="signup-county">
+    <label for='state'>State</label>
+      <input type='text' name='state'>
 
-  <label for='country'>Country</label>
-  <input type='text' name='country'>
+    <label for='country'>Country</label>
+      <input type='text' name='country'>
+  </div>  
 
-  <label for='postcode'>Postcode</label>
-  <input type='text' name='postcode'>
-
+  <div class="signup-image">
   <label for='picture'>Profile picture</label>
-  <input type='text' name='picture'>
+    <input type='text' name='picture'>
+  </div>  
 
-  <button type='submit'>Submit</button>
+  <button class="signup-btn" type='submit'>Submit</button>
 </form>

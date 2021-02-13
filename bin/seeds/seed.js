@@ -1,8 +1,12 @@
 const mongoose = require("mongoose");
-const User = require("./../../models/users");
-const Design = require("./../../models/designs");
-const Vote = require("./../../models/votes");
-const Order = require("./../../models/orders");
+const User = require("../../models/users");
+const Design = require("../../models/designs");
+const Vote = require("../../models/votes");
+const Order = require("../../models/orders");
+const bcrypt = require("bcryptjs");
+
+const saltRounds = 10;
+
 require("dotenv").config();
 
 // MONGOOSE CONNECTION
@@ -93,6 +97,13 @@ mongoose
     ];
 
     // 3. CREATE THE USERS DOCUMENTS
+    users.forEach((user) => {
+      const salt = bcrypt.genSaltSync(saltRounds);
+      const hashedPassword = bcrypt.hashSync(user.password, salt);
+
+      user.password = hashedPassword;
+    });
+
     const pr = User.create(users);
     return pr;
   })
