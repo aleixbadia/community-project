@@ -1,22 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <nav class="navbar flexsb">
-      <div class="logo">
-        <a href="/">Community Designs</a>
-      </div>
-      <div class="userform">
-        <ul class="flexsb">
-          <li class="flex"><a href="/cart">Cart</a></li>
-          <li class="flex"><a href="/profile">Profile</a></li>
-          <li class="flex"><a href="/auth/login">Log In</a></li>
-          <li class="flex"><a href="/auth/signup">Sign Up</a></li>
-        </ul>            
-      </div>
-    </nav>
-    {{{body}}}
-  </body>
+
+<head>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  {{#if logged}}
+  <nav class="navbar flexsb">
+    <div class="logo">
+      <a href="/">Community Designs</a>
+    </div>
+    <div class="userform">
+      <ul class="flexsb">
+        <li class="flex"><a href="/cart">Cart</a></li>
+        <li class="flex"><a href="/profile">Profile</a></li>
+        <li class="flex"><a href="/auth/logout">Log Out</a></li>
+      </ul>
+    </div>
+  </nav>
+  {{else}}
+  <nav class="navbar flexsb">
+    <div class="logo">
+      <a href="/">Community Designs</a>
+    </div>
+    <div class="userform">
+      <ul class="flexsb">
+        <li class="flex"><a href="/auth/login">Log In</a></li>
+        <li class="flex"><a href="/auth/signup">Sign Up</a></li>
+      </ul>
+    </div>
+  </nav>
+  {{/if}}
+  {{{body}}}
+</body>
+
 </html>
