@@ -1,3 +1,53 @@
-<h2>Edit your information</h2>
+<h2 class="edit-user-h2">Edit your information</h2>
 
-<a href="/profile">Back to profile</a>
+<form action='/profile/edit' method='POST'>
+
+  <div class="signup-name">
+    <label for='firstName'>First name</label>
+      <input type='text' name='firstName' value="{{user.name.firstName}}">
+    <label for='lastName'>Last name</label>
+      <input type='text' name='lastName' value="{{user.name.lastName}}">
+  </div>
+
+  <div class="singup-data">
+  <label for='age'>Age</label>
+    <input type='number' name='age' value="{{user.age}}">
+  <label for='gender'>Gender</label>
+    <select name='gender'>
+      <option value="na">I'd prefer not saying</option>
+      <option value="female">Female</option>
+      <option value="male">Male</option>
+      <option value="non-binary">Non binary</option>
+      <option value="other">Other</option>
+      <option value="undefined">Undefined</option>
+    </select>
+  </div>
+
+  <div class="signup-city">
+    <label for='street'>Street</label>
+      <input type='text' name='street' value="{{user.address.street}}">
+
+    <label for='city'>City</label>
+      <input type='text' name='city' value="{{user.address.city}}">
+
+    <label for='postcode'>Postcode</label>
+      <input type='text' name='postcode' value="{{user.address.postcode}}">
+  </div>
+  
+  <div class="signup-county">
+    <label for='state'>State</label>
+      <input type='text' name='state' value="{{user.address.state}}">
+
+    <label for='country'>Country</label>
+      <input type='text' name='country' value="{{user.address.country}}">
+  </div>  
+
+  <div class="signup-image">
+  <label for='picture'>Profile picture</label>
+    <input class="img-input" type='text' name='picture' value="{{user.picture}}">
+  </div>  
+
+  <button class="signup-btn" type='submit'>Submit</button>
+  
+  <a class="backToProfile" href="/profile">Back to profile</a>
+</form>

@@ -1,8 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap");
 
-/* RESET & COMMON STYLES*/
-
+/*---------------------------- RESET & COMMON STYLES----------------------------*/
 * {
   margin: 0;
   padding: 0;
@@ -24,8 +23,7 @@
   align-items: center;
 }
 
-/* LAYOUT */
-
+/*---------------------------- LAYOUT ----------------------------*/
 .navbar {
   background-color: #222222;
   color: #fff;
@@ -60,7 +58,7 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-/* MAIN PAGE */
+/*---------------------------- MAIN PAGE ----------------------------*/
 .main-h1 {
   text-align: center;
   margin: 60px 0;
@@ -100,21 +98,22 @@ body {
 }
 
 .cta-btns > .vote > a {
-  background-color:rgba(191, 141, 158, 0.6);
+  background-color: rgba(191, 141, 158, 0.6);
 }
 
 .cta-btns > div > a:hover {
   background-color: #e27d60;
 }
 
-/* SIGNUP FORM */
+/*---------------------------- SIGNUP FORM ----------------------------*/
 .signup-h2 {
   margin: 30px 0;
   text-align: center;
 }
 
 form {
-  margin-left: 30%;
+  margin: 0 20%;
+  width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -129,11 +128,12 @@ form > button {
   background-color: #222222;
   color: #fff;
   margin-top: 30px;
-  margin-left: 20%;
   padding: 10px 65px;
   border: none;
   border-radius: 15px;
   outline: none;
+  align-self: center;
+  cursor: pointer;
   transition: background-color 0.3s;
 }
 
@@ -142,5 +142,113 @@ form > button:hover {
 }
 
 form > button:active {
+  transform: scale(0.98%);
+}
+
+/*---------------------------- LOGIN FORM ----------------------------*/
+
+/*---------------------------- USER PROFILE ----------------------------*/
+.info {
+  margin: 20px auto;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.user-h2 {
+  text-align: center;
+  margin: 60px 0;
+  font-size: 1.2rem;
+}
+
+.profile-img {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+.profile-menu {
+  padding-top: 25px;
+  margin: 0 auto;
+  width: 50%;
+  justify-content: space-around;
+}
+
+.profile-menu > a {
+  padding: 10px 15px;
+  border-radius: 25px;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.profile-edit {
+  background-color: rgba(65, 179, 173, 0.7);
+}
+.profile-orders {
+  background-color: rgba(65, 179, 173, 0.7);
+}
+.profile-mine {
+  background-color: rgba(191, 141, 158, 0.7);
+}
+.profile-upload {
+  background-color: rgba(191, 141, 158, 0.7);
+}
+.profile-logout {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.profile-edit:hover {
+  background-color: rgba(65, 179, 173, 1);
+}
+.profile-orders:hover {
+  background-color: rgba(65, 179, 173, 1);
+}
+.profile-mine:hover {
+  background-color: rgba(191, 141, 158, 1);
+}
+.profile-upload:hover {
+  background-color: rgba(191, 141, 158, 1);
+}
+.profile-logout:hover {
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.profile-menu > a:active {
+  transform: scale(0.98%);
+}
+
+/*---------------------------- EDIT PROFILE FORM ----------------------------*/
+.edit-user-h2 {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 1.2rem;
+}
+
+.backToProfile {
+  align-self: center;
+  background-color: rgba(226, 125, 96, 0.6);
+  color: #fff;
+  margin-top: 30px;
+  padding: 10px 65px;
+  border: none;
+  border-radius: 15px;
+  outline: none;
+  transition: background-color 0.3s;
+}
+
+.signup-image {
+  width: 100%;
+}
+
+.img-input {
+  width: 80%;
+}
+
+.backToProfile:hover {
+  background-color: rgba(226, 125, 96, 1);
+}
+
+.backToProfile:active {
   transform: scale(0.98%);
 }

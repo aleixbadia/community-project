@@ -4,7 +4,6 @@ const Design = require("../../models/designs");
 const Vote = require("../../models/votes");
 const Order = require("../../models/orders");
 const bcrypt = require("bcryptjs");
-
 const saltRounds = 10;
 
 require("dotenv").config();
@@ -100,7 +99,6 @@ mongoose
     users.forEach((user) => {
       const salt = bcrypt.genSaltSync(saltRounds);
       const hashedPassword = bcrypt.hashSync(user.password, salt);
-
       user.password = hashedPassword;
     });
 
