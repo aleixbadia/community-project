@@ -1,13 +1,14 @@
+<div class="profile">
+  <div class="info">
+    <img class="profile-img" src={{user.picture}} alt="">
+    <h2 class="user-h2">{{user.name.firstName}} {{user.name.lastName}}</h2>
+    <h5 class="user-h5">| Com points: {{user.com_points}}</h5>
+  </div>
 
-<div class="info">
-<h2 class="user-h2">{{user.name.firstName}} {{user.name.lastName}}</h2>
-<img class="profile-img" src={{user.picture}} alt="">
-</div>
-
-<div class="profile-menu flex">
-  <a class="profile-edit" href="/profile/edit">Edit profile</a>
-  <a class="profile-orders" href="/profile/orders">Your orders</a>
-  <a class="profile-mine" href="/user/:userId">Your profile</a>
-  <a class="profile-upload" href="/profile/upload">Upload design</a>
-  <a class="profile-logout" href="/auth/logout">Log out</a>
+  <div class="profile-menu flex">
+    <a class="profile-edit" href="/profile/edit">Edit Your Info</a>
+    <a class="profile-orders" href="/profile/orders">Your orders</a>
+    <a class="profile-upload" href="/profile/upload">Upload design</a>
+    <a class="profile-mine" href="/user/:userId">Your public profile</a>
+  </div>
 </div>

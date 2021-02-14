@@ -11,9 +11,6 @@ let designIds = [];
 
 require("dotenv").config();
 
-console.log("Hola");
-
-
 // MONGOOSE CONNECTION
 // 1. CONNECT TO DB
 mongoose

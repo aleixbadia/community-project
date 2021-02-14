@@ -1,58 +1,61 @@
-<h2 class="signup-h2">Please fill up this form</h2>
-
 <form action='/auth/signup' method='POST'>
 
   <div class="signup-name">
-    <label for='firstName'>First name</label>
-      <input type='text' name='firstName'>
-    <label for='lastName'>Last name</label>
-      <input type='text' name='lastName'>
+    <label for='firstName'><i class="fas fa-user"></i></label>
+      <input type='text' name='firstName' placeholder="First Name">
+    <label for='lastName'><i class="fas fa-user hidden"></i></label>
+      <input type='text' name='lastName'placeholder="Last Name">
   </div>
 
   <div class="singup-mail">
-    <label for='email'>Email</label>
-      <input type='text' name='email'>
-    <label for='password'>Password</label>
-      <input type='password' name='password'>
+    <label for='email'><i class="fas fa-at"></i></i></label>
+      <input type='text' name='email' placeholder="e-mail">
+    <label for='password'><i class="fas fa-unlock-alt"></i></i></label>
+      <input type='password' name='password' placeholder="Password">
   </div>
 
   <div class="singup-data">
-  <label for='age'>Age</label>
-    <input type='number' name='age'>
-  <label for='gender'>Gender</label>
+  <label for='age'><i class="fas fa-baby-carriage"></i></label>
+    <input type='number' name='age' placeholder="Age">
+  <label for='gender'><i class="fas fa-users"></i></label>
     <select name='gender'>
+      <option value="na">I'd prefer not saying</option>
       <option value="female">Female</option>
       <option value="male">Male</option>
       <option value="non-binary">Non binary</option>
       <option value="other">Other</option>
       <option value="undefined">Undefined</option>
-      <option value="na">I'd prefer not saying</option>
     </select>
   </div>
 
   <div class="signup-city">
-    <label for='street'>Street</label>
-      <input type='text' name='street'>
+    <label for='street'><i class="fas fa-map-marker-alt"></i></label>
+      <input class="street-input" type='text' name='street' placeholder="Street">
+  </div>
 
-    <label for='city'>City</label>
-      <input type='text' name='city'>
-
-    <label for='postcode'>Postcode</label>
-      <input type='text' name='postcode'>
+  <div class="postcode">
+    <label for='city'><i class="fas fa-city"></i></label>
+      <input type='text' name='city' placeholder="City">
+    <label for='postcode'><i class="fas fa-mail-bulk"></i></label>
+      <input type='text' name='postcode' placeholder="Postcode">
   </div>
   
   <div class="signup-county">
-    <label for='state'>State</label>
-      <input type='text' name='state'>
+    <label for='state'><i class="fas fa-map-signs"></i></label>
+      <input type='text' name='state' placeholder="State">
 
-    <label for='country'>Country</label>
-      <input type='text' name='country'>
+    <label for='country'><i class="fas fa-globe-europe"></i></label>
+      <input type='text' name='country' placeholder="Country">
   </div>  
 
   <div class="signup-image">
-  <label for='picture'>Profile picture</label>
-    <input type='text' name='picture'>
+    <label for='picture'><i class="fas fa-camera-retro"></i></label>
+     <input type='text' name='picture' placeholder="link your profile picture here">
   </div>  
 
-  <button class="signup-btn" type='submit'>Submit</button>
+  <button class="signup-btn" type='submit'>Sign Up</button>
 </form>
+
+<div class="splash-container">
+  <img class="splash" src="/images/cmyk_dots.svg" alt="splash">
+</div>

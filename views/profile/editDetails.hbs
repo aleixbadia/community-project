@@ -1,18 +1,16 @@
-<h2 class="edit-user-h2">Edit your information</h2>
-
 <form action='/profile/edit' method='POST'>
 
   <div class="signup-name">
-    <label for='firstName'>First name</label>
+    <label for='firstName'><i class="fas fa-user"></i></label>
       <input type='text' name='firstName' value="{{user.name.firstName}}">
-    <label for='lastName'>Last name</label>
-      <input type='text' name='lastName' value="{{user.name.lastName}}">
+    <label for='lastName'><i class="fas fa-user hidden"></i></label>
+      <input type='text' name='lastName'value="{{user.name.lastName}}">
   </div>
 
   <div class="singup-data">
-  <label for='age'>Age</label>
+  <label for='age'><i class="fas fa-baby-carriage"></i></label>
     <input type='number' name='age' value="{{user.age}}">
-  <label for='gender'>Gender</label>
+  <label for='gender'><i class="fas fa-users"></i></label>
     <select name='gender'>
       <option value="na">I'd prefer not saying</option>
       <option value="female">Female</option>
@@ -24,30 +22,36 @@
   </div>
 
   <div class="signup-city">
-    <label for='street'>Street</label>
-      <input type='text' name='street' value="{{user.address.street}}">
+    <label for='street'><i class="fas fa-map-marker-alt"></i></label>
+      <input class="street-input" type='text' name='street' value="{{user.address.street}}">
+  </div>
 
-    <label for='city'>City</label>
+  <div class="postcode">
+    <label for='city'><i class="fas fa-city"></i></label>
       <input type='text' name='city' value="{{user.address.city}}">
-
-    <label for='postcode'>Postcode</label>
+    <label for='postcode'><i class="fas fa-mail-bulk"></i></label>
       <input type='text' name='postcode' value="{{user.address.postcode}}">
   </div>
   
   <div class="signup-county">
-    <label for='state'>State</label>
+    <label for='state'><i class="fas fa-map-signs"></i></label>
       <input type='text' name='state' value="{{user.address.state}}">
 
-    <label for='country'>Country</label>
+    <label for='country'><i class="fas fa-globe-europe"></i></label>
       <input type='text' name='country' value="{{user.address.country}}">
   </div>  
 
   <div class="signup-image">
-  <label for='picture'>Profile picture</label>
-    <input class="img-input" type='text' name='picture' value="{{user.picture}}">
+    <label for='picture'><i class="fas fa-camera-retro"></i></label>
+     <input type='text' name='picture' value="{{user.picture}}">
   </div>  
 
-  <button class="signup-btn" type='submit'>Submit</button>
+  <button class="edit-profile-btn" type='submit'>Edit Your Info</button>
   
   <a class="backToProfile" href="/profile">Back to profile</a>
 </form>
+
+
+<div class="splash-container">
+  <img class="splash" src="/images/cmyk_dots.svg" alt="splash">
+</div>

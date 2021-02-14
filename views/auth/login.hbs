@@ -1,15 +1,22 @@
-<h2>Log-in page</h2>
+<form class="login-form" action='/auth/login' method='POST'>
 
-<form action='/auth/login' method='POST'>
+  <div class="flex">
+    <label for='email'><i class="fas fa-at"></i></label>
+    <input type='text' name='email' placeholder="e-mail">
+  </div>
 
-  <label for='email'>Email</label>
-  <input type='text' name='email'>
+  <div class="flex">
+   <label for='password'><i class="fas fa-unlock-alt"></i></label>
+   <input type='password' name='password' placeholder="Password">
+  </div>
 
-  <label for='password'>Password</label>
-  <input type='text' name='password'>
-
-  <button type='submit'>Submit</button>
+  <button class="login-btn" type='submit'>Log In</button>
 </form>
+
+
+<div class="splash-container">
+  <img class="splash" src="/images/cmyk_dots.svg" alt="splash">
+</div>
 
 {{!-- error message display: --}}
 
