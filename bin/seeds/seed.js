@@ -14,7 +14,7 @@ require("dotenv").config();
 // MONGOOSE CONNECTION
 // 1. CONNECT TO DB
 mongoose
-  .connect("mongodb://localhost/community_project", { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
   .then((db) => {
     // 2. DROP THE DATABASE TO CLEAR IT
     console.log("Connected to the DB");
