@@ -42,6 +42,7 @@ router.get("/products", function (req, res, next) {
           })
           .catch( (err) => console.log(err));
       });
+      console.log(data)
       res.render("shop/gallery", { logged, data });
     })
     .catch((err) => console.log(err));
