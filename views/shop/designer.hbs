@@ -9,7 +9,9 @@
     {{#each designsToBuy}}
     <div class="card card-profile">
         <h3>{{this.name}}</h3>
-        <img src="{{this.url}}" alt="{{this.name}}">
+        <a class="card-img-wrapper" href="/products/{{this._id}}">
+          <img src="{{this.url}}" alt="{{this.name}}">
+        </a>
         <a class="card-buy" href="/products/{{this._id}}">Buy this product</a>
     </div>
     {{/each}}
@@ -17,7 +19,9 @@
     {{#each designsToVote}}
     <div class="card card-profile">
         <h3>{{this.name}}</h3>
-        <img src="{{this.url}}" alt="{{this.name}}">
+        <a class="card-img-wrapper" href="/products/{{this._id}}">
+          <img src="{{this.url}}" alt="{{this.name}}">
+        </a>
         <a class="card-vote" href="/vote/{{this._id}}">Vote this product</a>
     </div>
     {{/each}}
