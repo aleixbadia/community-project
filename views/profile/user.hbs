@@ -2,7 +2,7 @@
   <div class="info">
     <img class="profile-img" src={{user.picture}} alt="">
     <h2 class="user-h2">{{user.name.firstName}} {{user.name.lastName}}</h2>
-    <h5 class="user-h5">| Com points: {{user.com_points}}</h5>
+    <h5 class="user-h5">Com points: {{user.com_points}}</h5>
   </div>
 
   <div class="profile-menu flex">
@@ -11,4 +11,14 @@
     <a class="profile-upload" href="/profile/upload">Upload design</a>
     <a class="profile-mine" href="/user/{{user._id}}">Your public profile</a>
   </div>
+</div>
+
+ <div class="gallery gallery-profile">
+  {{#each designs}}
+    <div class="card card-profile">
+      <h3>{{this.name}}</h3>
+      <img src="{{this.url}}" alt="{{this.name}}">
+      <a class="card-edit" href="/profile/edit/{{this._id}}">Edit this product</a>
+    </div>
+  {{/each}}
 </div>

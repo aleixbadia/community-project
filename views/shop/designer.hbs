@@ -1,8 +1,25 @@
-<div class="profile">
-  <div class="info">
-    <img class="profile-img" src={{user.picture}} alt="">
-    <h2 class="user-h2">{{user.name.firstName}} {{user.name.lastName}}</h2>
-    <h5 class="user-h5">| Com points: {{user.com_points}}</h5>
+<div class="profile user-profile">
+  <div class="info public">
+    <img class="profile-img" src={{userData.picture}} alt="">
+    <h2 class="user-h2">{{userData.name.firstName}} {{userData.name.lastName}}</h2>
+    <h5 class="user-h5">Com points: {{userData.com_points}}</h5>
   </div>
 
+  <div class="gallery gallery-profile">
+    {{#each designsToBuy}}
+    <div class="card card-profile">
+        <h3>{{this.name}}</h3>
+        <img src="{{this.url}}" alt="{{this.name}}">
+        <a class="card-buy" href="/products/{{this._id}}">Buy this product</a>
+    </div>
+    {{/each}}
+
+    {{#each designsToVote}}
+    <div class="card card-profile">
+        <h3>{{this.name}}</h3>
+        <img src="{{this.url}}" alt="{{this.name}}">
+        <a class="card-vote" href="/vote/{{this._id}}">Vote this product</a>
+    </div>
+    {{/each}}
+    </div>
 </div>

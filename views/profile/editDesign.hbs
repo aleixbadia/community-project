@@ -1,0 +1,25 @@
+<form class="edit-design-form" action='/profile/edit/{{design._id}}' method='POST'>
+
+<div class="design-name flex">
+  <label for=''><i class="fas fa-quote-left"></i></label>
+  <input type='text' name='name' value="{{design.name}}">
+</div>
+
+<div class="design-description flex">
+  <label for=''><i class="fas fa-text-height"></i></label>
+  <input type='text' name='description' value="{{design.description}}">
+</div>
+
+<div class="design-link flex">
+  <label for=''><i class="fas fa-camera-retro"></i></label>
+  <input type='text' name='url' value="{{design.url}}">
+</div>
+
+  <button class="edit-design" type='submit'>Edit Design</button>
+
+  <a class="backToProfile" href="/profile">Back to profile</a>
+</form>
+
+<div class="splash-container">
+  <img class="splash" src="/images/cmyk_dots.svg" alt="splash">
+</div>
