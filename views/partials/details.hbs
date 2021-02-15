@@ -1,4 +1,36 @@
-<h3>Product details</h3>
-<p>{{this.userId.name.firstName}}</p>
-<p></p>
-<a href="/user/{{this.userId}}">Designer</a>
+<div class="details-wrapper card">
+    <div class="details-img">
+        <img src="{{this.url}}" alt="{{this.name}}">
+    </div>
+    <div class="designer-details">
+        <div class="designer-data">
+            <span>Created by</span>
+            <a href="/user/{{this.userId._id}}">
+                <p>{{this.userId.name.firstName}}</p>
+                <p>{{this.userId.name.lastName}}</p>
+                <img src="{{this.userId.picture}}" alt="">
+            </a>
+        </div>
+        <div class="title flex">
+            <h2>{{this.name}}</h2>
+        </div>
+        
+        <div class="product-details flex">
+            <h3>Product details:</h3>
+            <p>{{this.description}}</p>
+        </div>
+        
+        <div class="vote-product flex">
+            <h3>Vote this product:</h3>
+            <div class="thumbs-wrapper flex">
+                <button class="up">
+                    <i class="fas fa-thumbs-up"></i>
+                </button>
+                <button class="down">
+                    <i class="fas fa-thumbs-down"></i>
+                </button>
+            </div>
+        </div>        
+    </div>
+
+</div>

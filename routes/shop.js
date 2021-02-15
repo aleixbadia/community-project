@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
-
 const Design = require("./../models/designs");
+const User = require("./../models/users");
 
 const {getVotes, getVotesRating} = require('./../utils/middleware')
 
@@ -59,7 +59,6 @@ router.get("/vote", function (req, res, next) {
 
 router.get("/vote/:designId", function (req, res, next) {
   const logged = checkLogin(req);
-  console.log("hola");
   Design.findById(req.params.designId)
     .populate("userId")
     .then((data) => {      
@@ -88,8 +87,13 @@ router.get("/checkout", function (req, res, next) {
 
 router.get("/user/:userId", function (req, res, next) {
   const logged = checkLogin(req);
+  User.find(req.params.id)
+  .then( (data) => {
+    console.log(data)
+    res.render("shop/designer", { logged, data });
+  })
+  .catch( (err) => console.log(err));
   //data missing
-  res.render("shop/designer", { logged });
 });
 
 module.exports = router;

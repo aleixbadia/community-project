@@ -290,7 +290,7 @@ mongoose
       {
         userId: ids[0],
         url:
-          "https://www.google.com/imgres?imgurl=https%3A%2F%2Fi.rocdn.com%2Fv2%2F8886092%3Fw%3D1024%26h%3D1024&imgrefurl=https%3A%2F%2Fwww.rageon.com%2Fproducts%2Frupaul-t-shirt-4&tbnid=3SmAIF8_xaDGlM&vet=12ahUKEwiN_Y37tuTuAhUZ-BoKHdOrCvYQMygGegUIARCCAg..i&docid=bLqbz1CKWOj-FM&w=1024&h=1024&q=rupaul%20shirt&ved=2ahUKEwiN_Y37tuTuAhUZ-BoKHdOrCvYQMygGegUIARCCAg",
+          "https://ih1.redbubble.net/image.1188737524.5961/ur,mask_flatlay_front,product,600x600.u1.jpg",
         name: "RuPaul appreciation T-shirt",
         description:
           "A T-shirt celebrating the one, the only, the legent, the diva",
