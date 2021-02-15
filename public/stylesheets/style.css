@@ -95,6 +95,15 @@ body {
   color: var(--black);
 }
 
+.cart-icon,
+.profile-icon,
+.logout-icon,
+.login-icon,
+.signup-icon {
+  display: none;
+  font-size: 1rem;
+}
+
 .userform li > a {
   margin: 0;
   display: inline-block;
@@ -694,3 +703,186 @@ footer {
 }
 
 /*---------------------------- MEDIA QUERIES ----------------------------*/
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+
+  .body {
+    font-size: 50%;
+  }
+  
+  /*---------------------------- LAYOUT ----------------------------*/
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--black);
+    color: #fff;
+    height: 40px;
+    padding: 0 10px;
+    font-size: 0.8rem;
+  }
+
+  .navbar > div > a {
+    margin: 0;
+    display: inline-block;
+    height: 40px;
+    padding: 10px 5px 0 5px;
+    color: #fff;
+  }
+
+  .img-wrapper {
+    display: none;
+  }
+
+  .img-wrapper > img {
+    display: none;
+  }
+    
+  .cart-text,
+  .profile-text,
+  .logout-text,
+  .login-text,
+  .signup-text {
+    display: none;
+  }
+ 
+  .cart-icon,
+  .profile-icon,
+  .logout-icon,
+  .login-icon,
+  .signup-icon {
+    display: inline-block;
+    padding: 0 5px 0 5px;
+    font-size: 1rem;
+  }
+
+  .userform li {
+    height: 40px;
+  }
+
+  .userform li > a {
+    height: 40px;
+    padding: 10px 5px 0 5px;
+  }
+
+  /*---------------------------- MAIN PAGE ----------------------------*/
+  .page-wrapper {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .main-h1 {
+    text-align: center;
+    margin: 50px 0 0 0;
+    height: 15vh;
+    font-size: 1.2rem;
+  }
+  
+  .cta-btns {
+    flex-direction: column;
+    height: 67vh;
+  }
+
+  .buy,
+  .vote,
+  .join {
+    height: calc(100% / 3);
+    width: 100%;
+  }
+
+  .cta-btns > div > a {
+    padding: 5px 20px;
+  }
+
+  /*---------------------------- LOGIN FORM ----------------------------*/
+  .login-form {
+    width: 80%;
+  }
+
+  /*---------------------------- SIGNUP FORM ----------------------------*/
+  .signup-form {
+    width: 90%
+  }
+
+  .signup-form > div > input,
+  .signup-form > div > select {
+    width: 60%;
+  }
+  
+  .signup-form > div > label > i {
+    font-size: 1.5rem;
+  }
+
+  /*---------------------------- GALLERY ----------------------------*/
+ 
+  .gallery {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  /*---------------------------- PRODUCT DETAIL ----------------------------*/
+ 
+  .details-wrapper {
+    flex-direction: column;
+    padding: 5px;
+    margin-top: -40px;
+  }
+
+  .details-img {
+    width: 100%;
+    border-radius: 50px;
+  }
+
+  .details-img > img {
+    margin: 0 20px;
+    width: 90%;
+    border-radius: 50px;
+  }
+
+  .designer-data > span {
+    display: none;
+  }
+
+  .designer-data > a > img {
+    height: 40px;
+  }
+
+  .designer-details {
+    justify-content: flex-start;
+  }
+
+  
+  .designer-details > div > h2{
+    font-size: 1rem;
+    margin-top: 55px
+  }
+
+  .product-details {
+    display: none;
+  }
+
+  .thumbs-wrapper {
+    margin-top: -35px;
+  }
+
+  .back-to-vote {
+    padding: 5px 20px
+  }
+  
+  .back-to-buy {
+    padding: 5px 20px
+  }
+
+  .userform > ul {
+    /* position: absolute;
+    right: 85px;
+    top: 0px; */
+  }
+}
