@@ -62,6 +62,7 @@ router.get("/vote", function (req, res, next) {
 
 router.get("/vote/:designId", function (req, res, next) {
   const logged = checkLogin(req);
+  console.log("hola");
   Design.findById(req.params.designId)
     .populate("userId")
     .then((data) => {      
