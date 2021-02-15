@@ -3,7 +3,7 @@ var router = express.Router();
 
 const Design = require("./../models/designs");
 
-const {getVotes, getVotesRating} = require('./../utils/middleware')
+const { getVotes, getVotesRating } = require("./../utils/middleware");
 
 const minVotes = 1;
 const minRating = 1;
@@ -28,9 +28,12 @@ router.get("/products", function (req, res, next) {
   Design.find()
     .then((designs) => {
       console.log("Get votes: ", getVotes(designs[0]));
-      
-      const data = designs.filter((design) => getVotes(design) > minVotes && getVotesRating(design) > minRating);
-      data.forEach(design => {
+
+      const data = designs.filter(
+        (design) =>
+          getVotes(design) > minVotes && getVotesRating(design) > minRating
+      );
+      data.forEach((design) => {
         design.vote = false;
       });
       res.render("shop/gallery", { logged, data });
@@ -48,10 +51,10 @@ router.get("/vote", function (req, res, next) {
   const logged = checkLogin(req);
   Design.find()
     .then((data) => {
-      data.forEach(design => {
+      data.forEach((design) => {
         design.vote = true;
       });
-      
+
       res.render("shop/gallery", { logged, data });
     })
     .catch((err) => console.log(err));
@@ -59,8 +62,12 @@ router.get("/vote", function (req, res, next) {
 
 router.get("/vote/:designId", function (req, res, next) {
   const logged = checkLogin(req);
-  //data missing
-  res.render("shop/vote", { logged });
+  Design.findById(req.params.designId)
+    .populate("userId")
+    .then((data) => {      
+      res.render("shop/vote", { logged, data });
+    })
+    .catch((err) => console.log(err));
 });
 
 router.get("/cart", function (req, res, next) {

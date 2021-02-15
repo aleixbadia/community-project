@@ -4,9 +4,9 @@
         <h3>{{this.name}}</h3>
         <img src="{{this.url}}" alt="{{this.name}}">
         {{#if this.vote}}
-            <a href="/vote/designId">Vote this product</a>
+            <a href="/vote/{{this._id}}">Vote this product</a>
         {{else}}
-            <a href="/products/designId">Buy this product</a>
+            <a href="/products/{{this._id}}">Buy this product</a>
         {{/if}}
     </div>
     {{/each}}
