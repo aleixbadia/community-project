@@ -17,7 +17,9 @@
   {{#each designs}}
     <div class="card card-profile">
       <h3>{{this.name}}</h3>
-      <img src="{{this.url}}" alt="{{this.name}}">
+      <a class="card-img-wrapper" href="/profile/edit/{{this._id}}">
+        <img src="{{this.url}}" alt="{{this.name}}">
+      </a>
       <a class="card-edit" href="/profile/edit/{{this._id}}">Edit this product</a>
     </div>
   {{/each}}

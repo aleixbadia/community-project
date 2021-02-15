@@ -2,10 +2,15 @@
     {{#each data}}
     <div class="card">
         <h3>{{this.name}}</h3>
-        <img src="{{this.url}}" alt="{{this.name}}">
         {{#if this.vote}}
+            <a class="card-img-wrapper" href="/vote/{{this._id}}">
+                <img src="{{this.url}}" alt="{{this.name}}">
+            </a>
             <a class="card-vote" href="/vote/{{this._id}}">Vote this product</a>
         {{else}}
+            <a class="card-img-wrapper" href="/products/{{this._id}}">
+                <img src="{{this.url}}" alt="{{this.name}}">
+            </a>
             <a class="card-buy" href="/products/{{this._id}}">Buy this product</a>
         {{/if}}
     </div>

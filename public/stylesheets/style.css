@@ -445,10 +445,16 @@ form > div > select:focus {
   margin-bottom: 20px;
 }
 
-.card > img {
+.card-img-wrapper {
   display: inline-block;
   height: 60%;
   width: 90%;
+}
+
+.card > a > img {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
 }
 
 .card-vote {
