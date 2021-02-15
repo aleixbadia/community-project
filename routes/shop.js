@@ -22,6 +22,10 @@ router.get("/", function (req, res, next) {
   res.render("main", { logged });
 });
 
+router.get("/business-model", function (req, res, next) {
+  res.render("business-model");
+});
+
 router.get("/products", async (req, res, next) => {
   const logged = checkLogin(req);
   let rating = 0;
