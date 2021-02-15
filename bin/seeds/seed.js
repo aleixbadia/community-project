@@ -429,52 +429,52 @@ mongoose
       {
         userId: userIds[0],
         designId: designIds[1],
-        rating: 1,
+        rating: -1,
       },
       {
         userId: userIds[0],
         designId: designIds[5],
-        rating: 1,
+        rating: -1,
       },
       {
         userId: userIds[0],
         designId: designIds[13],
-        rating: 1,
+        rating: -1,
       },
       {
         userId: userIds[0],
         designId: designIds[17],
-        rating: 1,
+        rating: -1,
       },
       {
         userId: userIds[0],
         designId: designIds[19],
-        rating: 1,
+        rating: -1,
       },
       {
         userId: userIds[1],
         designId: designIds[2],
-        rating: 1,
+        rating: -1,
       },
       {
         userId: userIds[1],
         designId: designIds[6],
-        rating: 1,
+        rating: -1,
       },
       {
         userId: userIds[1],
         designId: designIds[12],
-        rating: 1,
+        rating: -1,
       },
       {
         userId: userIds[1],
         designId: designIds[10],
-        rating: 1,
+        rating: -1,
       },
       {
         userId: userIds[1],
         designId: designIds[3],
-        rating: 1,
+        rating: -1,
       },
       {
         userId: userIds[2],
