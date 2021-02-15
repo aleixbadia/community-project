@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 const Design = require("./../models/designs");
 const Vote = require("./../models/votes");
+const User = require("./../models/users");
 
 const minVotes = 3;
 const minRating = 0.5;
@@ -48,8 +49,12 @@ router.get("/products", function (req, res, next) {
 
 router.get("/products/:designId", function (req, res, next) {
   const logged = checkLogin(req);
-  //data missing
-  res.render("shop/buy", { logged });
+  Design.findById(req.params.designId)
+  .populate("userId")
+  .then((data) => {      
+    res.render("shop/buy", { logged, data });
+  })
+  .catch((err) => console.log(err));
 });
 
 router.get("/vote", function (req, res, next) {

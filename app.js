@@ -16,7 +16,7 @@ var profileRouter = require("./routes/profile");
 
 // DB CONNECTION
 mongoose
-  .connect(`mongodb://localhost/community_project`, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
