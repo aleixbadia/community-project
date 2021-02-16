@@ -281,7 +281,7 @@ mongoose
     createdUsers.forEach((user) => {
       userIds.push(user._id);
     });
-    console.log(userIds)
+    console.log(userIds);
     return userIds;
   })
   .then((ids) => {
@@ -294,6 +294,7 @@ mongoose
         name: "RuPaul appreciation T-shirt",
         description:
           "A T-shirt celebrating the one, the only, the legent, the diva",
+        price: 12.05,
       },
       {
         userId: ids[1],
@@ -302,114 +303,152 @@ mongoose
         name: "Code Mug",
         description:
           "Whenever you're frustrating finding a missing ) or }, just take a sip of tea/coffee and everything is going to be fine",
+        price: 10.45,
       },
       {
         userId: ids[3],
-        url: "https://i.picsum.photos/id/619/500/500.jpg?hmac=NGtxAgAsQGvRr6cQUzK836TwMCx1OYBGwe1j37CXX70",
+        url:
+          "https://i.picsum.photos/id/619/500/500.jpg?hmac=NGtxAgAsQGvRr6cQUzK836TwMCx1OYBGwe1j37CXX70",
         name: "Mail box",
         description: "Unexpected letters are so charming",
+        price: 13.75,
       },
       {
         userId: ids[4],
-        url: "https://i.picsum.photos/id/0/500/500.jpg?hmac=GxFxxOH5UMJ_PdDE2Yn6uUIaPjoc_UEOUOYzwFiTxMw",
+        url:
+          "https://i.picsum.photos/id/0/500/500.jpg?hmac=GxFxxOH5UMJ_PdDE2Yn6uUIaPjoc_UEOUOYzwFiTxMw",
         name: "Coffe developer",
         description: "Love coding",
+        price: 15.35,
       },
       {
         userId: ids[5],
-        url: "https://i.picsum.photos/id/68/500/500.jpg?hmac=pKyI0LMvS_HyH_vx_jWvbwbytO_vxmfxFsrjvX9X5D8",
+        url:
+          "https://i.picsum.photos/id/68/500/500.jpg?hmac=pKyI0LMvS_HyH_vx_jWvbwbytO_vxmfxFsrjvX9X5D8",
         name: "Winter by the sea",
         description: "You can find peace in the less expected places",
+        price: 9.50,
       },
       {
         userId: ids[6],
-        url: "https://i.picsum.photos/id/141/500/500.jpg?hmac=jIMUpJy_Y92XvLIdO1w5U8_7fm2jNQIm9XymCaD1XeQ",
+        url:
+          "https://i.picsum.photos/id/141/500/500.jpg?hmac=jIMUpJy_Y92XvLIdO1w5U8_7fm2jNQIm9XymCaD1XeQ",
         name: "Boiled eggs",
         description: "One of those moments",
+        price: 12.35,
       },
       {
         userId: ids[7],
-        url: "https://i.picsum.photos/id/1060/500/500.jpg?hmac=1_Zfj2QnxUoauTpLLb7BO881mQrrsM9pgyEDTuOw-QM",
+        url:
+          "https://i.picsum.photos/id/1060/500/500.jpg?hmac=1_Zfj2QnxUoauTpLLb7BO881mQrrsM9pgyEDTuOw-QM",
         name: "Little pleasures",
         description: "Happiness is in our little pleasures",
+        price: 11.35,
       },
       {
         userId: ids[8],
-        url: "https://i.picsum.photos/id/44/500/500.jpg?hmac=XuitWtjF7_EOYZnnmH9Dx1lqjGoOmF3_aQL8qtBVCqc",
+        url:
+          "https://i.picsum.photos/id/44/500/500.jpg?hmac=XuitWtjF7_EOYZnnmH9Dx1lqjGoOmF3_aQL8qtBVCqc",
         name: "Summer 1994",
         description: "I didn't know happiness could be pictured",
+        price: 10.65,
       },
       {
         userId: ids[9],
-        url: "https://i.picsum.photos/id/32/500/500.jpg?hmac=86FEqhvXyxxme4FgaTbH6jvuyREKzGILn-5Ub25aURE",
+        url:
+          "https://i.picsum.photos/id/32/500/500.jpg?hmac=86FEqhvXyxxme4FgaTbH6jvuyREKzGILn-5Ub25aURE",
         name: "What is left behind",
-        description: "Change is a constant, and this is what I left behind a long time ago",
+        description:
+          "Change is a constant, and this is what I left behind a long time ago",
+          price: 12.35,
       },
       {
         userId: ids[1],
-        url: "https://i.picsum.photos/id/757/500/500.jpg?hmac=EwwmT3950su7R_ARfzbUsqubYnt5TnWZRS9zQm36BZA",
+        url:
+          "https://i.picsum.photos/id/757/500/500.jpg?hmac=EwwmT3950su7R_ARfzbUsqubYnt5TnWZRS9zQm36BZA",
         name: "Loving trip",
         description: "Go where love tells you to",
+        price: 12.35,
       },
       {
         userId: ids[2],
-        url: "https://i.picsum.photos/id/618/500/500.jpg?hmac=-U8GAgEI7ChUZUiD9rdvxo3EGQq0MR81ViM7ze8HDYc",
+        url:
+          "https://i.picsum.photos/id/618/500/500.jpg?hmac=-U8GAgEI7ChUZUiD9rdvxo3EGQq0MR81ViM7ze8HDYc",
         name: "Geometric pleasures",
         description: "Picture taken in the British Museum - 2003",
+        price: 12.35,
       },
       {
         userId: ids[3],
-        url: "https://i.picsum.photos/id/320/500/500.jpg?hmac=2iE7TIF9kIqQOHrIUPOJx2wP1CJewQIZBeMLIRrm74s",
+        url:
+          "https://i.picsum.photos/id/320/500/500.jpg?hmac=2iE7TIF9kIqQOHrIUPOJx2wP1CJewQIZBeMLIRrm74s",
         name: "New beginnings",
         description: "Everyday could be a fresh start, and if not now, when?",
+        price: 12.35,
       },
       {
         userId: ids[4],
-        url: "https://i.picsum.photos/id/38/500/500.jpg?hmac=P2ck2JJoFY6U4RS1VwfQve2kzwgG-1D_6PwXf-oi5jo",
+        url:
+          "https://i.picsum.photos/id/38/500/500.jpg?hmac=P2ck2JJoFY6U4RS1VwfQve2kzwgG-1D_6PwXf-oi5jo",
         name: "Cloud styling",
         description: "Clouds are no longer born, they are made",
+        price: 11.45,
       },
       {
         userId: ids[5],
-        url: "https://i.picsum.photos/id/439/500/500.jpg?hmac=lj2SoYqYGC6Qd5qEW2YmgyD0qdxf5usiTeuC0RuGemo",
+        url:
+          "https://i.picsum.photos/id/439/500/500.jpg?hmac=lj2SoYqYGC6Qd5qEW2YmgyD0qdxf5usiTeuC0RuGemo",
         name: "City sky",
         description: "Picture from my room",
+        price: 11.45,
       },
       {
         userId: ids[6],
-        url: "https://i.picsum.photos/id/94/500/500.jpg?hmac=fU8eN6t-spj5f3-h0uf4clf5qttgWmR6Z6HwcYnsLlw",
+        url:
+          "https://i.picsum.photos/id/94/500/500.jpg?hmac=fU8eN6t-spj5f3-h0uf4clf5qttgWmR6Z6HwcYnsLlw",
         name: "Summer will come",
         description: "Grass, spring, morning, 2001",
+        price: 11.45,
       },
       {
         userId: ids[7],
-        url: "https://i.picsum.photos/id/82/500/500.jpg?hmac=SBl_t1w-gmq7jLkcwDJHDQG5MsYX_Pdr3_gTaYW_UaU",
+        url:
+          "https://i.picsum.photos/id/82/500/500.jpg?hmac=SBl_t1w-gmq7jLkcwDJHDQG5MsYX_Pdr3_gTaYW_UaU",
         name: "Sakura",
         description: "Japan has the most beautiful spring of all",
+        price: 11.45,
       },
       {
         userId: ids[8],
-        url: "https://i.picsum.photos/id/140/500/500.jpg?hmac=5tkI8SHv4r-aBAH_0PdbizD8y-NlYv3POESdyYIMk4o",
+        url:
+          "https://i.picsum.photos/id/140/500/500.jpg?hmac=5tkI8SHv4r-aBAH_0PdbizD8y-NlYv3POESdyYIMk4o",
         name: "Grow strong",
         description: "All we want for you is to grow strong and in peace",
+        price: 11.45,
       },
       {
         userId: ids[9],
-        url: "https://i.picsum.photos/id/260/500/500.jpg?hmac=KrCyDoFtAZ6bfs9TSpN-cySHgOentnXIBcRCBbqstHQ",
+        url:
+          "https://i.picsum.photos/id/260/500/500.jpg?hmac=KrCyDoFtAZ6bfs9TSpN-cySHgOentnXIBcRCBbqstHQ",
         name: "Desires",
         description: "Simple desires can change someone's life",
+        price: 11.45,
       },
       {
         userId: ids[9],
-        url: "https://i.picsum.photos/id/556/500/500.jpg?hmac=QCr9844f3jicoToG31pqMK529sQp6hadIFgyaH-ixeo",
+        url:
+          "https://i.picsum.photos/id/556/500/500.jpg?hmac=QCr9844f3jicoToG31pqMK529sQp6hadIFgyaH-ixeo",
         name: "Old barn and stables",
         description: "Here I spent the best year of my life",
+        price: 11.45,
       },
       {
         userId: ids[9],
-        url: "https://i.picsum.photos/id/555/500/500.jpg?hmac=fACyyPb_gk0ca06b0o3PREP8DzEICzNBKimKghDZYNo",
+        url:
+          "https://i.picsum.photos/id/555/500/500.jpg?hmac=fACyyPb_gk0ca06b0o3PREP8DzEICzNBKimKghDZYNo",
         name: "Timeless",
         description: "Playgounds can be found in the less expected places",
+        price: 11.45,
       },
     ];
 
@@ -664,23 +703,38 @@ mongoose
     const orders = [
       {
         userId: userIds[19],
-        cart: [{ id: designIds[3], quantity: 1 }],
+        cart: [
+          { designId: designIds[3], quantity: 1 },
+          { designId: designIds[4], quantity: 3 },
+          { designId: designIds[1], quantity: 2 },
+          { designId: designIds[2], quantity: 1 },
+        ],
       },
       {
         userId: userIds[19],
-        cart: [{ id: designIds[5], quantity: 2 }],
+        cart: [
+          { designId: designIds[10], quantity: 1 },
+          { designId: designIds[14], quantity: 1 },
+          { designId: designIds[11], quantity: 2 },
+          { designId: designIds[12], quantity: 3 },
+        ],
       },
       {
         userId: userIds[19],
-        cart: [{ id: designIds[7], quantity: 3 }],
+        cart: [{ designId: designIds[7], quantity: 3 }],
       },
       {
         userId: userIds[19],
-        cart: [{ id: designIds[9], quantity: 3 }],
+        cart: [
+          { designId: designIds[8], quantity: 1 },
+          { designId: designIds[9], quantity: 6 },
+          { designId: designIds[5], quantity: 2 },
+          { designId: designIds[6], quantity: 2 },
+        ],
       },
       {
         userId: userIds[19],
-        cart: [{ id: designIds[12], quantity: 3 }],
+        cart: [{ designId: designIds[12], quantity: 3 }],
       },
     ];
 

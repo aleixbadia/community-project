@@ -27,7 +27,7 @@ const userSchema = new Schema(
     },
     currentCart: {
       type: [
-        { id: { type: Schema.Types.ObjectId, ref: "Vote" }, quantity: Number },
+        { id: { type: Schema.Types.ObjectId, ref: "Design" }, quantity: Number },
       ],
       default: [],
     },
