@@ -4,11 +4,13 @@ const Schema = mongoose.Schema;
 // CREATE SCHEMA
 const orderSchema = new Schema(
   {
-    userId : { type: Schema.Types.ObjectId, ref: "User" },
-    cart : {
-        type: [{id:{ type: Schema.Types.ObjectId, ref: "Design" }, quantity: Number}],
-        default: [],
+    userId: { type: Schema.Types.ObjectId, ref: "User" },
+    cart: [
+      {
+        designId: { type: Schema.Types.ObjectId, ref: "Design" },
+        quantity: Number,
       },
+    ],
   },
   {
     timestamps: {

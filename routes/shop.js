@@ -86,8 +86,24 @@ router.get("/vote/:designId", function (req, res, next) {
 
 router.get("/cart", function (req, res, next) {
   const logged = checkLogin(req);
-  //data missing
-  res.render("shop/cart", { logged });
+  const id = req.session.currentUser._id;
+  let total = 0;
+  const shipping = 3;
+
+  User.findById(id)
+    .populate('currentCart.designId')
+    .then((user) => {
+
+      user.currentCart.forEach(product => {
+        product.subtotal = product.quantity*product.designId.price;
+        total += product.subtotal;
+      });
+      user.currentCartV = total;
+      user.shipping = shipping
+      user.finalCost = total + shipping;
+      res.render("shop/cart", { logged, user });
+    })
+    .catch((err) => console.log(err));
 });
 
 router.post("/cart", function (req, res, next) {
@@ -95,10 +111,14 @@ router.post("/cart", function (req, res, next) {
 
   const { quantity, designId } = req.body;
 
-  User.findById(id)
+  User.findOneAndUpdate(
+    { _id: id },
+    { $push: { currentCart: { quantity, designId } } }
+  )
     .then((user) => {
-      user.currentCart;
-      res.render("shop/cart", {});
+      console.log(user.currentCart);
+      
+      res.redirect("/products");
     })
     .catch((err) => console.log(err));
 });
