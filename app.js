@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -5,7 +7,6 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var hbs = require("hbs");
 const mongoose = require("mongoose");
-require("dotenv").config();
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);

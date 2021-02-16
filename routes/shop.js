@@ -22,6 +22,10 @@ router.get("/", function (req, res, next) {
   res.render("main", { logged });
 });
 
+router.get("/business-model", function (req, res, next) {
+  res.render("business-model");
+});
+
 router.get("/products", async (req, res, next) => {
   const logged = checkLogin(req);
   let rating = 0;
@@ -78,34 +82,35 @@ router.get("/vote/:designId", async (req, res, next) => {
   try {
     const logged = checkLogin(req);
     let availableToVote = true;
-    
-    const data = await Design.findById(req.params.designId).populate("userId")
-    
-    const userId = req.session.currentUser._id 
-    
-    const designId = data._id
-    const designerId = data.userId._id
-    
-    const alreadyVoted = await Vote.findOne( {userId: userId, designId: designId})
+
+    const data = await Design.findById(req.params.designId).populate("userId");
+
+    const userId = req.session.currentUser._id;
+
+    const designId = data._id;
+    const designerId = data.userId._id;
+
+    const alreadyVoted = await Vote.find({
+      $and: [{ userId: userId }, { designId: designId }],
+    });
 
     if (String(userId) === String(designerId)) {
-      console.log('same person!')
       availableToVote = false;
-    } else if (alreadyVoted) {
+    } else if (alreadyVoted.length !== 0) {
       availableToVote = false;
     }
-
     res.render("shop/vote", { logged, availableToVote, data });
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 });
 
 router.post("/vote/:designId", async (req, res, next) => {
   try {
-    const { userId, designId, rating } = req.body;
-    const createdVote = await Vote.create({ userId, designId, rating })
-    res.redirect("/vote")
+    const userId = req.session.currentUser._id;
+    const { designId, rating } = req.body;
+    const createdVote = await Vote.create({ userId, designId, rating });
+    res.redirect("/vote");
   } catch (err) {
     console.log(err);
   }
@@ -113,8 +118,23 @@ router.post("/vote/:designId", async (req, res, next) => {
 
 router.get("/cart", function (req, res, next) {
   const logged = checkLogin(req);
-  //data missing
-  res.render("shop/cart", { logged });
+  const id = req.session.currentUser._id;
+  let total = 0;
+  const shipping = 3;
+
+  User.findById(id)
+    .populate("currentCart.designId")
+    .then((user) => {
+      user.currentCart.forEach((product) => {
+        product.subtotal = product.quantity * product.designId.price;
+        total += product.subtotal;
+      });
+      user.currentCartV = total;
+      user.shipping = shipping;
+      user.finalCost = total + shipping;
+      res.render("shop/cart", { logged, user });
+    })
+    .catch((err) => console.log(err));
 });
 
 router.post("/cart", function (req, res, next) {
@@ -122,10 +142,14 @@ router.post("/cart", function (req, res, next) {
 
   const { quantity, designId } = req.body;
 
-  User.findById(id)
+  User.findOneAndUpdate(
+    { _id: id },
+    { $push: { currentCart: { quantity, designId } } }
+  )
     .then((user) => {
-      user.currentCart;
-      res.render("shop/cart", {});
+      console.log(user.currentCart);
+
+      res.redirect("/products");
     })
     .catch((err) => console.log(err));
 });

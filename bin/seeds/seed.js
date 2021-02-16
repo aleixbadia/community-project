@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const mongoose = require("mongoose");
 const User = require("../../models/users");
 const Design = require("../../models/designs");
@@ -9,7 +11,6 @@ const saltRounds = 10;
 let userIds = [];
 let designIds = [];
 
-require("dotenv").config();
 
 // MONGOOSE CONNECTION
 // 1. CONNECT TO DB
