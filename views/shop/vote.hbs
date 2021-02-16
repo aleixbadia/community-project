@@ -7,7 +7,6 @@
         <form class="thumbs-form" action='/vote/{{data._id}}' method='POST'>
 
             <input class="thumbs-form-input" type='text' name='designId' value="{{data._id}}">
-            <input class="thumbs-form-input" type='text' name='userId' value="{{data.userId._id}}">
             <input class="thumbs-form-input" type='number' name='rating' value="1">
                     
             <button class="up" type="submit"><i class="fas fa-thumbs-up"></i></button>
@@ -16,7 +15,6 @@
         <form class="thumbs-form" action='/vote/{{data._id}}' method='POST'>
 
             <input class="thumbs-form-input" type='text' name='designId' value="{{data._id}}">
-            <input class="thumbs-form-input" type='text' name='userId' value="{{data.userId._id}}">
             <input class="thumbs-form-input" type='number' name='rating' value="-1">
                     
             <button class="down" type="submit"><i class="fas fa-thumbs-down"></i></button>
