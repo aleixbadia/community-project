@@ -375,7 +375,8 @@ form > div > select:focus {
   background-color: var(--yellow);
   color: var(--bone);
   border-radius: 50px;
-  transition: background-color 0.3;}
+  transition: background-color 0.3;
+}
 
 .card-edit:hover {
   background-color: var(--lilac);
@@ -507,8 +508,8 @@ form > div > select:focus {
   justify-content: space-between;
   align-items: flex-start;
   width: 80%;
-  height: 80vh;
-  margin: 0 auto;
+  height: 70vh;
+  margin: 15px auto;
   padding: 50px;
 }
 
@@ -580,7 +581,6 @@ form > div > select:focus {
   font-size: 1.2rem;
 }
 
-
 /*---------------------------- PUBLIC PROFILE ----------------------------*/
 
 .user-profile {
@@ -606,7 +606,7 @@ form > div > select:focus {
 }
 
 .card-profile {
-  margin: 0 10px;   
+  margin: 0 10px;
 }
 
 /*---------------------------- BUY/VOTE SINGLE PRODUCT ----------------------------*/
@@ -630,8 +630,20 @@ form > div > select:focus {
 
 .addToCart {
   position: absolute;
-  top: 10%;
-  left: 10%;
+  bottom: 25%;
+  left: 68%;
+  padding: 15px 65px;
+  transform: translateX(-50%);
+  border-radius: 50px;
+  border: none;
+  background-color: var(--black);
+  color: var(--bone);
+  transition: background-color 0.3s ease 0s;
+  cursor: pointer;
+}
+
+.addToCart:hover {
+  background-color: var(--cyan);
 }
 
 .back-to-vote {
@@ -639,7 +651,6 @@ form > div > select:focus {
   background-color: var(--magenta);
   color: rgb(255, 255, 255);
   margin: 15px 50%;
-  transform: translateX(-50%);
   padding: 15px 65px;
   border: none;
   border-radius: 15px;
@@ -672,14 +683,14 @@ form > div > select:focus {
 
 .up,
 .down {
-  background-color: var(--bone); 
+  background-color: var(--bone);
   padding: 0;
   margin: 0;
 }
 
 .up:hover,
 .down:hover {
-  background-color: var(--bone); 
+  background-color: var(--bone);
 }
 
 .thumbs-form > button > i {
@@ -687,12 +698,12 @@ form > div > select:focus {
   font-size: 4rem;
 }
 
-.up > i:hover{
-  color: var(--green)
+.up > i:hover {
+  color: var(--green);
 }
 
 .down > i:hover {
-  color: var(--orange)
+  color: var(--orange);
 }
 
 .thumbs-form,
@@ -704,35 +715,8 @@ form > div > select:focus {
   margin: 0 50px;
 }
 
-.vote-error {
-  flex-direction: column;
-  background-color: rgba(0, 0, 0, 0.8);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.vote-error-content {
-  flex-direction: column;
-  height: 50%;
-  width: 50%;
-  background-color:var(--bone);
-  border-radius: 50px;
-}
-
-.vote-error-text {
-  font-size: 1.5rem;
-}
-
-.vote-error-btn {
-  margin-top: 30px;
-  background-color: var(--black);
-  color: var(--bone);
-  border-radius: 15px;
-  padding: 10px 30px;
+.thumbs-form-input {
+  display: none;
 }
 /*---------------------------- FOOTER ----------------------------*/
 
@@ -747,16 +731,11 @@ footer {
 }
 
 /*---------------------------- MEDIA QUERIES ----------------------------*/
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
-
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
   .body {
     font-size: 50%;
   }
-  
+
   /*---------------------------- LAYOUT ----------------------------*/
   .navbar {
     position: fixed;
@@ -785,7 +764,7 @@ footer {
   .img-wrapper > img {
     display: none;
   }
-    
+
   .cart-text,
   .profile-text,
   .logout-text,
@@ -793,7 +772,7 @@ footer {
   .signup-text {
     display: none;
   }
- 
+
   .cart-icon,
   .profile-icon,
   .logout-icon,
@@ -818,14 +797,14 @@ footer {
     height: 100%;
     width: 100%;
   }
-  
+
   .main-h1 {
     text-align: center;
     margin: 50px 0 0 0;
     height: 15vh;
     font-size: 1.2rem;
   }
-  
+
   .cta-btns {
     flex-direction: column;
     height: 67vh;
@@ -849,20 +828,20 @@ footer {
 
   /*---------------------------- SIGNUP FORM ----------------------------*/
   .signup-form {
-    width: 90%
+    width: 90%;
   }
 
   .signup-form > div > input,
   .signup-form > div > select {
     width: 60%;
   }
-  
+
   .signup-form > div > label > i {
     font-size: 1.5rem;
   }
 
   /*---------------------------- GALLERY ----------------------------*/
- 
+
   .gallery {
     flex-direction: column;
   }
@@ -872,7 +851,7 @@ footer {
   }
 
   /*---------------------------- PRODUCT DETAIL ----------------------------*/
- 
+
   .details-wrapper {
     flex-direction: column;
     padding: 5px;
@@ -902,10 +881,9 @@ footer {
     justify-content: flex-start;
   }
 
-  
-  .designer-details > div > h2{
+  .designer-details > div > h2 {
     font-size: 1rem;
-    margin-top: 55px
+    margin-top: 55px;
   }
 
   .product-details {
@@ -917,11 +895,11 @@ footer {
   }
 
   .back-to-vote {
-    padding: 5px 20px
+    padding: 5px 20px;
   }
-  
+
   .back-to-buy {
-    padding: 5px 20px
+    padding: 5px 20px;
   }
 
   .userform > ul {

@@ -1,14 +1,25 @@
-<h2>Upload new design</h2>
+<form class="edit-design-form" action='/profile/upload/' method='POST'>
 
-<form action='/endPointName' method='POST'>
+<div class="design-name flex">
+  <label for=''><i class="fas fa-quote-left"></i></label>
+  <input type='text' name='name' placeholder="Title">
+</div>
 
-  <label for=''>Design name</label>
-  <input type='text' name='Email'>
+<div class="design-description flex">
+  <label for=''><i class="fas fa-list-ul"></i></label>
+  <input type='text' name='description' placeholder="Description">
+</div>
 
-  <label for=''>Design description</label>
-  <input type='text' name='Password'>
+<div class="design-link flex">
+  <label for=''><i class="fas fa-camera-retro"></i></label>
+  <input type='text' name='url' placeholder="Link you design here">
+</div>
 
-  <button type='submit'>Submit</button>
+  <button class="edit-design" type='submit'>Create Design</button>
+
+  <a class="backToProfile" href="/profile">Back to profile</a>
 </form>
 
-<a href="/profile">Back to profile</a>
+<div class="splash-container">
+  <img class="splash" src="/images/cmyk_dots.svg" alt="splash">
+</div>

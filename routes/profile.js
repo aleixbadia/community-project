@@ -67,6 +67,15 @@ router.get("/upload", isLoggedIn, function (req, res, next) {
   res.render("profile/upload", { logged });
 });
 
+router.post("/upload", isLoggedIn, async (req, res, next) => {
+  const logged = true;
+
+  const { name, description, url } = req.body
+
+  const createdDesign = await Design.create({ name, description, url })
+  
+  res.rendirect("/profile", { logged });
+});
 
 router.get("/edit/:designId", isLoggedIn, async (req, res, next) => {
   try {
@@ -82,9 +91,7 @@ router.get("/edit/:designId", isLoggedIn, async (req, res, next) => {
 router.post("/edit/:designId", isLoggedIn, async (req, res, next) => {
   try {
     const id = req.params.designId
-    console.log(id)
     const {name, description, url} = req.body
-    console.log(name, description, url)
     const design = await Design.findByIdAndUpdate(id, {name, description, url}, {new: true})
     res.redirect("/profile");
   } catch (error) {
@@ -92,4 +99,15 @@ router.post("/edit/:designId", isLoggedIn, async (req, res, next) => {
   };
 });
 
+router.post("/edit/:designId/delete", isLoggedIn, async (req, res, next) => {
+  try {
+    const id = req.params.designId
+    console.log(id)
+    const design = await Design.findById(id)
+    console.log()
+    res.redirect("/profile");
+  } catch (error) {
+    console.log(err)    
+  };
+});
 module.exports = router;

@@ -88,9 +88,6 @@ router.get("/vote/:designId", async (req, res, next) => {
     
     const alreadyVoted = await Vote.findOne( {userId: userId, designId: designId})
 
-    // console.log("userId", userId, "designerId", designerId, "designId", designId)
-    console.log(alreadyVoted)
-
     if (String(userId) === String(designerId)) {
       console.log('same person!')
       availableToVote = false;
@@ -107,12 +104,8 @@ router.get("/vote/:designId", async (req, res, next) => {
 router.post("/vote/:designId", async (req, res, next) => {
   try {
     const { designerId, designId, rating } = req.body;
-
     const createdVote = await Vote.create({ designerId, designId, rating })
-    console.log(createdVote)
-
     res.redirect("/vote")
-
   } catch (err) {
     console.log(err);
   }
