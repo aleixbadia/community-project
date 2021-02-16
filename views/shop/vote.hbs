@@ -8,7 +8,7 @@
 
             <input class="thumbs-form-input" type='text' name='designId' value="{{data._id}}">
             <input class="thumbs-form-input" type='number' name='rating' value="1">
-                    
+
             <button class="up" type="submit"><i class="fas fa-thumbs-up"></i></button>
         </form>
 
@@ -16,13 +16,21 @@
 
             <input class="thumbs-form-input" type='text' name='designId' value="{{data._id}}">
             <input class="thumbs-form-input" type='number' name='rating' value="-1">
-                    
+
             <button class="down" type="submit"><i class="fas fa-thumbs-down"></i></button>
         </form>
 
     </div>
-</div>       
+</div>
 {{/if}}
 
+{{#unless logged}}
+<div class="vote-product flex">
+    <div class="thumbs-wrapper flex">
+        <a class="up" href="/auth/login"><i class="fas fa-thumbs-up"></i></a>
+        <a class="down" href="/auth/login"><i class="fas fa-thumbs-down"></i></a>
+    </div>
+</div>
+{{/unless}}
+
 <a href="/vote" class="back-to-vote">Back</a>
- 
