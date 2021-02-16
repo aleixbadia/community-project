@@ -103,8 +103,8 @@ router.get("/vote/:designId", async (req, res, next) => {
 
 router.post("/vote/:designId", async (req, res, next) => {
   try {
-    const { designerId, designId, rating } = req.body;
-    const createdVote = await Vote.create({ designerId, designId, rating })
+    const { userId, designId, rating } = req.body;
+    const createdVote = await Vote.create({ userId, designId, rating })
     res.redirect("/vote")
   } catch (err) {
     console.log(err);
