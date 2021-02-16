@@ -80,25 +80,31 @@ router.get("/vote", function (req, res, next) {
 
 router.get("/vote/:designId", async (req, res, next) => {
   try {
-    const logged = checkLogin(req);
     let availableToVote = true;
+    const logged = checkLogin(req);
+    let userId;
 
-    const data = await Design.findById(req.params.designId).populate("userId");
+    const data = await Design.findById(req.params.designId).populate(
+      "userId"
+    );
 
-    const userId = req.session.currentUser._id;
+    if (logged) {
+      userId = req.session.currentUser._id;
+      const alreadyVoted = await Vote.find({
+        $and: [{ userId: userId }, { designId: data._id }],
+      });
 
-    const designId = data._id;
-    const designerId = data.userId._id;
-
-    const alreadyVoted = await Vote.find({
-      $and: [{ userId: userId }, { designId: designId }],
-    });
-
-    if (String(userId) === String(designerId)) {
-      availableToVote = false;
-    } else if (alreadyVoted.length !== 0) {
+      if (
+        String(userId) === String(data.userId._id) ||
+        alreadyVoted.length !== 0
+      ) {
+        availableToVote = false;
+      }
+    } else {
       availableToVote = false;
     }
+
+
     res.render("shop/vote", { logged, availableToVote, data });
   } catch (err) {
     console.log(err);
