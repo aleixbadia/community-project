@@ -1,4 +1,19 @@
-<h2>Buy this product</h2>
 {{> details data}}
 
-<button>Add to cart</button>
+<a href="/products" class="back-to-buy">Back</a>
+
+{{#if logged}}
+<form class="addToCart" action='/cart' method='POST'>
+    <h3>Price: {{data.price}}€</h3>
+    <label for='quantity'>Quantity</label>
+    <input type='number' name='quantity' value="1">
+    <input type='text' name='designId' value={{data._id}} style="display: none">
+
+    <button type='submit'>Add to cart</button>
+</form>
+
+{{else}}
+
+<a href="/auth/login" class="addToCart">Add to cart</a>
+
+{{/if}}

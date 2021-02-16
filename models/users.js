@@ -25,12 +25,12 @@ const userSchema = new Schema(
         longitude: { type: Number, default: 0 },
       },
     },
-    currentCart: {
-      type: [
-        { id: { type: Schema.Types.ObjectId, ref: "Vote" }, quantity: Number },
-      ],
-      default: [],
-    },
+    currentCart: [
+      {
+        designId: { type: Schema.Types.ObjectId, ref: "Design" },
+        quantity: Number,
+      },
+    ],
   },
   {
     timestamps: {

@@ -77,7 +77,8 @@ body {
 .img-wrapper {
   width: 60px;
   height: 60px;
-  /* overflow: hidden; */
+  overflow: hidden;
+  border-radius: 50%;
 }
 
 .img-wrapper > img {
@@ -92,6 +93,15 @@ body {
 .userform li:hover {
   background-color: var(--bone);
   color: var(--black);
+}
+
+.cart-icon,
+.profile-icon,
+.logout-icon,
+.login-icon,
+.signup-icon {
+  display: none;
+  font-size: 1rem;
 }
 
 .userform li > a {
@@ -358,6 +368,19 @@ form > div > select:focus {
   transform: scale(0.98%);
 }
 
+.card-edit {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: var(--yellow);
+  color: var(--bone);
+  border-radius: 50px;
+  transition: background-color 0.3;
+}
+
+.card-edit:hover {
+  background-color: var(--lilac);
+}
 /*---------------------------- EDIT PROFILE FORM ----------------------------*/
 
 .backToProfile {
@@ -394,6 +417,13 @@ form > div > select:focus {
   transform: scale(0.98%);
 }
 
+.edit-design-form {
+  margin-top: 10%;
+}
+
+.edit-design:hover {
+  background-color: var(--yellow);
+}
 /*---------------------------- GALLERY ----------------------------*/
 .gallery {
   width: 80%;
@@ -407,12 +437,12 @@ form > div > select:focus {
 .card {
   width: 23%;
   height: 50vh;
-  padding: 25px 15px;
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  padding: 25px 15px;
   background-color: var(--bone);
   border-radius: 50px;
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.6);
@@ -425,13 +455,19 @@ form > div > select:focus {
   margin-bottom: 20px;
 }
 
-.card > img {
+.card-img-wrapper {
   display: inline-block;
   height: 60%;
   width: 90%;
 }
 
-.card > a {
+.card > a > img {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+.card-vote {
   display: inline-block;
   margin-top: 20px;
   padding: 10px 20px;
@@ -441,8 +477,22 @@ form > div > select:focus {
   transition: background-color 0.3;
 }
 
-.card > a:hover {
+.card-vote:hover {
   background-color: var(--green);
+}
+
+.card-buy {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: var(--cyan);
+  color: var(--bone);
+  border-radius: 50px;
+  transition: background-color 0.3;
+}
+
+.card-buy:hover {
+  background-color: var(--orange);
 }
 
 /*---------------------------- GALLERY PRODUCT DETAILS ----------------------------*/
@@ -458,8 +508,8 @@ form > div > select:focus {
   justify-content: space-between;
   align-items: flex-start;
   width: 80%;
-  height: 80vh;
-  margin: 0 auto;
+  height: 70vh;
+  margin: 15px auto;
   padding: 50px;
 }
 
@@ -479,8 +529,9 @@ form > div > select:focus {
   height: 70%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  margin-left: 50px;
 }
 
 .designer-data {
@@ -530,10 +581,91 @@ form > div > select:focus {
   font-size: 1.2rem;
 }
 
+/*---------------------------- PUBLIC PROFILE ----------------------------*/
+
+.user-profile {
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  width: 100%;
+}
+
+.public {
+  width: 50%;
+  padding: 25px 15px;
+  background-color: var(--bone);
+  border-radius: 50px;
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.6);
+  margin-bottom: 50px;
+}
+
+.gallery-profile {
+  width: 90%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card-profile {
+  margin: 0 10px;
+}
+
+/*---------------------------- BUY/VOTE SINGLE PRODUCT ----------------------------*/
+
+.back-to-buy {
+  display: inline-block;
+  background-color: var(--cyan);
+  color: rgb(255, 255, 255);
+  margin: 15px 50%;
+  transform: translateX(-50%);
+  padding: 15px 65px;
+  border: none;
+  border-radius: 15px;
+  outline: none;
+  transition: background-color 0.3s ease 0s;
+}
+
+.back-to-buy:hover {
+  background-color: var(--orange);
+}
+
+.addToCart {
+  position: absolute;
+  bottom: 25%;
+  left: 68%;
+  padding: 15px 65px;
+  transform: translateX(-50%);
+  border-radius: 50px;
+  border: none;
+  background-color: var(--black);
+  color: var(--bone);
+  transition: background-color 0.3s ease 0s;
+  cursor: pointer;
+}
+
+.addToCart:hover {
+  background-color: var(--cyan);
+}
+
+.back-to-vote {
+  display: inline-block;
+  background-color: var(--magenta);
+  color: rgb(255, 255, 255);
+  margin: 15px 50%;
+  padding: 15px 65px;
+  border: none;
+  border-radius: 15px;
+  outline: none;
+  transition: background-color 0.3s ease 0s;
+}
+
+.back-to-vote:hover {
+  background-color: var(--green);
+}
+
 .vote-product {
   position: absolute;
-  bottom: -15%;
-  left: 60%;
+  bottom: -5%;
+  left: 55%;
   width: 13%;
   justify-content: flex-start;
   flex-direction: column;
@@ -549,26 +681,43 @@ form > div > select:focus {
   justify-content: space-between;
 }
 
-.thumbs-wrapper > button {
-  border: none;
-  background: none;
-  cursor: pointer;
+.up,
+.down {
+  background-color: var(--bone);
+  padding: 0;
+  margin: 0;
 }
 
-.thumbs-wrapper > button > i {
-  font-size: 5rem;
+.up:hover,
+.down:hover {
+  background-color: var(--bone);
+}
+
+.thumbs-form > button > i {
   color: var(--black);
-  transition: all 0.3s
+  font-size: 4rem;
 }
 
-.up > i:hover{
-  color: var(--green)
+.up > i:hover {
+  color: var(--green);
 }
 
 .down > i:hover {
-  color: var(--orange)
+  color: var(--orange);
 }
 
+.thumbs-form,
+.thumbs-form-input,
+.thumbs-form,
+.thumbs-wrapper {
+  background: none;
+  box-shadow: none;
+  margin: 0 50px;
+}
+
+.thumbs-form-input {
+  display: none;
+}
 /*---------------------------- FOOTER ----------------------------*/
 
 footer {
@@ -582,3 +731,180 @@ footer {
 }
 
 /*---------------------------- MEDIA QUERIES ----------------------------*/
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+  .body {
+    font-size: 50%;
+  }
+
+  /*---------------------------- LAYOUT ----------------------------*/
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--black);
+    color: #fff;
+    height: 40px;
+    padding: 0 10px;
+    font-size: 0.8rem;
+  }
+
+  .navbar > div > a {
+    margin: 0;
+    display: inline-block;
+    height: 40px;
+    padding: 10px 5px 0 5px;
+    color: #fff;
+  }
+
+  .img-wrapper {
+    display: none;
+  }
+
+  .img-wrapper > img {
+    display: none;
+  }
+
+  .cart-text,
+  .profile-text,
+  .logout-text,
+  .login-text,
+  .signup-text {
+    display: none;
+  }
+
+  .cart-icon,
+  .profile-icon,
+  .logout-icon,
+  .login-icon,
+  .signup-icon {
+    display: inline-block;
+    padding: 0 5px 0 5px;
+    font-size: 1rem;
+  }
+
+  .userform li {
+    height: 40px;
+  }
+
+  .userform li > a {
+    height: 40px;
+    padding: 10px 5px 0 5px;
+  }
+
+  /*---------------------------- MAIN PAGE ----------------------------*/
+  .page-wrapper {
+    height: 100%;
+    width: 100%;
+  }
+
+  .main-h1 {
+    text-align: center;
+    margin: 50px 0 0 0;
+    height: 15vh;
+    font-size: 1.2rem;
+  }
+
+  .cta-btns {
+    flex-direction: column;
+    height: 67vh;
+  }
+
+  .buy,
+  .vote,
+  .join {
+    height: calc(100% / 3);
+    width: 100%;
+  }
+
+  .cta-btns > div > a {
+    padding: 5px 20px;
+  }
+
+  /*---------------------------- LOGIN FORM ----------------------------*/
+  .login-form {
+    width: 80%;
+  }
+
+  /*---------------------------- SIGNUP FORM ----------------------------*/
+  .signup-form {
+    width: 90%;
+  }
+
+  .signup-form > div > input,
+  .signup-form > div > select {
+    width: 60%;
+  }
+
+  .signup-form > div > label > i {
+    font-size: 1.5rem;
+  }
+
+  /*---------------------------- GALLERY ----------------------------*/
+
+  .gallery {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+  }
+
+  /*---------------------------- PRODUCT DETAIL ----------------------------*/
+
+  .details-wrapper {
+    flex-direction: column;
+    padding: 5px;
+    margin-top: -40px;
+  }
+
+  .details-img {
+    width: 100%;
+    border-radius: 50px;
+  }
+
+  .details-img > img {
+    margin: 0 20px;
+    width: 90%;
+    border-radius: 50px;
+  }
+
+  .designer-data > span {
+    display: none;
+  }
+
+  .designer-data > a > img {
+    height: 40px;
+  }
+
+  .designer-details {
+    justify-content: flex-start;
+  }
+
+  .designer-details > div > h2 {
+    font-size: 1rem;
+    margin-top: 55px;
+  }
+
+  .product-details {
+    display: none;
+  }
+
+  .thumbs-wrapper {
+    margin-top: -35px;
+  }
+
+  .back-to-vote {
+    padding: 5px 20px;
+  }
+
+  .back-to-buy {
+    padding: 5px 20px;
+  }
+
+  .userform > ul {
+    /* position: absolute;
+    right: 85px;
+    top: 0px; */
+  }
+}

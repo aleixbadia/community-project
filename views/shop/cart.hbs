@@ -1,2 +1,17 @@
 <h2>This is your cart</h2>
+<ul>
+    {{#each user.currentCart}}
+    <li>
+        <h4>{{this.designId.name}}</h4>
+        <img src="" alt="">
+        <h4>{{this.designId.name}}</h4>
+        <p>{{this.designId.description}}</p>
+        <p>{{this.quantity}}u x {{this.designId.price}}€ = {{this.subtotal}}€</p>
+    </li>
+    {{/each}}
+</ul>
+<h4>Cart total = {{user.currentCartV}}€</h4>
+<h4>Shipping = {{user.shipping}}€</h4>
+<h3>TOTAL = {{user.finalCost}}€</h3>
+
 <a href="/purchase">Continue to purchase</a>

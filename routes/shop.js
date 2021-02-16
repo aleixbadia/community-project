@@ -78,20 +78,80 @@ router.get("/vote", function (req, res, next) {
     .catch((err) => console.log(err));
 });
 
-router.get("/vote/:designId", function (req, res, next) {
-  const logged = checkLogin(req);
-  Design.findById(req.params.designId)
-    .populate("userId")
-    .then((data) => {
-      res.render("shop/vote", { logged, data });
-    })
-    .catch((err) => console.log(err));
+router.get("/vote/:designId", async (req, res, next) => {
+  try {
+    const logged = checkLogin(req);
+    let availableToVote = true;
+    
+    const data = await Design.findById(req.params.designId).populate("userId")
+    
+    const userId = req.session.currentUser._id 
+    
+    const designId = data._id
+    const designerId = data.userId._id
+    
+    const alreadyVoted = await Vote.findOne( {userId: userId, designId: designId})
+
+    if (String(userId) === String(designerId)) {
+      console.log('same person!')
+      availableToVote = false;
+    } else if (alreadyVoted) {
+      availableToVote = false;
+    }
+
+    res.render("shop/vote", { logged, availableToVote, data });
+  } catch (err) {
+    console.log(err)
+  }
+});
+
+router.post("/vote/:designId", async (req, res, next) => {
+  try {
+    const { designerId, designId, rating } = req.body;
+    const createdVote = await Vote.create({ designerId, designId, rating })
+    res.redirect("/vote")
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.get("/cart", function (req, res, next) {
   const logged = checkLogin(req);
-  //data missing
-  res.render("shop/cart", { logged });
+  const id = req.session.currentUser._id;
+  let total = 0;
+  const shipping = 3;
+
+  User.findById(id)
+    .populate('currentCart.designId')
+    .then((user) => {
+
+      user.currentCart.forEach(product => {
+        product.subtotal = product.quantity*product.designId.price;
+        total += product.subtotal;
+      });
+      user.currentCartV = total;
+      user.shipping = shipping
+      user.finalCost = total + shipping;
+      res.render("shop/cart", { logged, user });
+    })
+    .catch((err) => console.log(err));
+});
+
+router.post("/cart", function (req, res, next) {
+  const id = req.session.currentUser._id;
+
+  const { quantity, designId } = req.body;
+
+  User.findOneAndUpdate(
+    { _id: id },
+    { $push: { currentCart: { quantity, designId } } }
+  )
+    .then((user) => {
+      console.log(user.currentCart);
+      
+      res.redirect("/products");
+    })
+    .catch((err) => console.log(err));
 });
 
 router.get("/purchase", function (req, res, next) {
@@ -106,15 +166,42 @@ router.get("/checkout", function (req, res, next) {
   res.render("shop/checkout", { logged });
 });
 
-router.get("/user/:userId", function (req, res, next) {
-  const logged = checkLogin(req);
-  User.find(req.params.id)
-    .then((data) => {
-      console.log(data);
-      res.render("shop/designer", { logged, data });
-    })
-    .catch((err) => console.log(err));
-  //data missing
+router.get("/user/:userId", async (req, res, next) => {
+  try {
+    const logged = checkLogin(req);
+    const userData = await User.findById(req.params.userId);
+    const userDesigns = await Design.find({ userId: req.params.userId });
+    const votes = await Vote.find();
+    let designsToBuy = [];
+    let designsToVote = [];
+    let rating = 0;
+    let votesByDesign = 0;
+
+    userDesigns.forEach((design) => {
+      rating = 0;
+      votesByDesign = 0;
+      votes.forEach((vote) => {
+        if (String(design._id) === String(vote.designId)) {
+          //Calculation of total votes and rating
+          votesByDesign++;
+          rating += vote.rating;
+        }
+      });
+      if (votesByDesign > minVotes && rating > votesByDesign * minRating) {
+        designsToBuy.push(design);
+      } else {
+        designsToVote.push(design);
+      }
+    });
+    res.render("shop/designer", {
+      logged,
+      userData,
+      designsToBuy,
+      designsToVote,
+    });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 module.exports = router;
