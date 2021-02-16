@@ -74,14 +74,48 @@ router.get("/vote", function (req, res, next) {
     .catch((err) => console.log(err));
 });
 
-router.get("/vote/:designId", function (req, res, next) {
-  const logged = checkLogin(req);
-  Design.findById(req.params.designId)
-    .populate("userId")
-    .then((data) => {
-      res.render("shop/vote", { logged, data });
-    })
-    .catch((err) => console.log(err));
+router.get("/vote/:designId", async (req, res, next) => {
+  try {
+    const logged = checkLogin(req);
+    let availableToVote = true;
+    
+    const data = await Design.findById(req.params.designId).populate("userId")
+    
+    const userId = req.session.currentUser._id 
+    
+    const designId = data._id
+    const designerId = data.userId._id
+    
+    const alreadyVoted = await Vote.findOne( {userId: userId, designId: designId})
+
+    // console.log("userId", userId, "designerId", designerId, "designId", designId)
+    console.log(alreadyVoted)
+
+    if (String(userId) === String(designerId)) {
+      console.log('same person!')
+      availableToVote = false;
+    } else if (alreadyVoted) {
+      availableToVote = false;
+    }
+
+    res.render("shop/vote", { logged, availableToVote, data });
+  } catch (err) {
+    console.log(err)
+  }
+});
+
+router.post("/vote/:designId", async (req, res, next) => {
+  try {
+    const { designerId, designId, rating } = req.body;
+
+    const createdVote = await Vote.create({ designerId, designId, rating })
+    console.log(createdVote)
+
+    res.redirect("/vote")
+
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.get("/cart", function (req, res, next) {

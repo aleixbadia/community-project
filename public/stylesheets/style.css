@@ -580,45 +580,6 @@ form > div > select:focus {
   font-size: 1.2rem;
 }
 
-.vote-product {
-  position: absolute;
-  bottom: -15%;
-  left: 60%;
-  width: 13%;
-  justify-content: flex-start;
-  flex-direction: column;
-  height: 40%;
-}
-
-.vote-product > h3 {
-  font-size: 1.5rem;
-}
-
-.thumbs-wrapper {
-  width: 100%;
-  justify-content: space-between;
-}
-
-.thumbs-wrapper > button {
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-.thumbs-wrapper > button > i {
-  margin-top: 10px;
-  font-size: 4rem;
-  color: var(--black);
-  transition: all 0.3s
-}
-
-.up > i:hover{
-  color: var(--green)
-}
-
-.down > i:hover {
-  color: var(--orange)
-}
 
 /*---------------------------- PUBLIC PROFILE ----------------------------*/
 
@@ -648,7 +609,7 @@ form > div > select:focus {
   margin: 0 10px;   
 }
 
-/*---------------------------- BUY SINGLE PRODUCT ----------------------------*/
+/*---------------------------- BUY/VOTE SINGLE PRODUCT ----------------------------*/
 
 .back-to-buy {
   display: inline-block;
@@ -690,6 +651,89 @@ form > div > select:focus {
   background-color: var(--green);
 }
 
+.vote-product {
+  position: absolute;
+  bottom: -5%;
+  left: 55%;
+  width: 13%;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 40%;
+}
+
+.vote-product > h3 {
+  font-size: 1.5rem;
+}
+
+.thumbs-wrapper {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.up,
+.down {
+  background-color: var(--bone); 
+  padding: 0;
+  margin: 0;
+}
+
+.up:hover,
+.down:hover {
+  background-color: var(--bone); 
+}
+
+.thumbs-form > button > i {
+  color: var(--black);
+  font-size: 4rem;
+}
+
+.up > i:hover{
+  color: var(--green)
+}
+
+.down > i:hover {
+  color: var(--orange)
+}
+
+.thumbs-form,
+.thumbs-form-input,
+.thumbs-form,
+.thumbs-wrapper {
+  background: none;
+  box-shadow: none;
+  margin: 0 50px;
+}
+
+.vote-error {
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.vote-error-content {
+  flex-direction: column;
+  height: 50%;
+  width: 50%;
+  background-color:var(--bone);
+  border-radius: 50px;
+}
+
+.vote-error-text {
+  font-size: 1.5rem;
+}
+
+.vote-error-btn {
+  margin-top: 30px;
+  background-color: var(--black);
+  color: var(--bone);
+  border-radius: 15px;
+  padding: 10px 30px;
+}
 /*---------------------------- FOOTER ----------------------------*/
 
 footer {
