@@ -117,6 +117,19 @@ router.get("/cart", function (req, res, next) {
   res.render("shop/cart", { logged });
 });
 
+router.post("/cart", function (req, res, next) {
+  const id = req.session.currentUser._id;
+
+  const { quantity, designId } = req.body;
+
+  User.findById(id)
+    .then((user) => {
+      user.currentCart;
+      res.render("shop/cart", {});
+    })
+    .catch((err) => console.log(err));
+});
+
 router.get("/purchase", function (req, res, next) {
   const logged = checkLogin(req);
   //data missing
@@ -132,11 +145,11 @@ router.get("/checkout", function (req, res, next) {
 router.get("/user/:userId", async (req, res, next) => {
   try {
     const logged = checkLogin(req);
-    const userData = await User.findById(req.params.userId)
-    const userDesigns = await Design.find({userId: req.params.userId})
-    const votes = await Vote.find()
-    let designsToBuy = []
-    let designsToVote = []
+    const userData = await User.findById(req.params.userId);
+    const userDesigns = await Design.find({ userId: req.params.userId });
+    const votes = await Vote.find();
+    let designsToBuy = [];
+    let designsToVote = [];
     let rating = 0;
     let votesByDesign = 0;
 
@@ -153,13 +166,18 @@ router.get("/user/:userId", async (req, res, next) => {
       if (votesByDesign > minVotes && rating > votesByDesign * minRating) {
         designsToBuy.push(design);
       } else {
-        designsToVote.push(design); 
+        designsToVote.push(design);
       }
     });
-    res.render("shop/designer", { logged, userData, designsToBuy, designsToVote });
+    res.render("shop/designer", {
+      logged,
+      userData,
+      designsToBuy,
+      designsToVote,
+    });
   } catch (err) {
     console.log(err);
-  }    
+  }
 });
 
 module.exports = router;

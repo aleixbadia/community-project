@@ -6,7 +6,7 @@ const orderSchema = new Schema(
   {
     userId : { type: Schema.Types.ObjectId, ref: "User" },
     cart : {
-        type: [{id:{ type: Schema.Types.ObjectId, ref: "Vote" }, quantity: Number}],
+        type: [{id:{ type: Schema.Types.ObjectId, ref: "Design" }, quantity: Number}],
         default: [],
       },
   },
