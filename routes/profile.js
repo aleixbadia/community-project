@@ -5,7 +5,7 @@ const Design = require("./../models/designs");
 const Order = require("./../models/orders");
 const { isLoggedIn } = require("./../utils/middleware");
 
-const fileUploader = require('./../configs/cloudinary');
+const fileUploader = require('../configs/cloudinary.config');
 
 /* GET users listing. */
 router.get("/", isLoggedIn, async (req, res, next) => {
@@ -76,18 +76,19 @@ router.get("/upload", isLoggedIn, function (req, res, next) {
   res.render("profile/upload", { logged, profile });
 });
 
-router.post("/upload", isLoggedIn, fileUploader.single('image'), async (req, res, next) => {
-  const logged = true;
-
+router.post("/upload", isLoggedIn, fileUploader.single('image'), (req, res, next) => {
   const { name, description,} = req.body
   const url = req.file.path
+  const userId = req.session.currentUser._id
 
   console.log("name", name, "description", description)
   console.log("url", url)
 
-  // const createdDesign = await Design.create({ name, description, url: req.file.path })
-  
-  // res.redirect("/profile", { logged });
+  Design.create({ userId, name, description, url: req.file.path })
+  .then( (data) => {
+    res.redirect("/profile");
+  })
+  .catch( (err) => console.log(err));
 });
 
 router.get("/edit/:designId", isLoggedIn, async (req, res, next) => {

@@ -1,4 +1,4 @@
-<form class="signup-form" action='/auth/signup' method='POST'>
+<form class="signup-form" enctype="multipart/form-data" action='/auth/signup' method='POST'>
 
   <div class="signup-name">
     <label for='firstName'><i class="fas fa-user"></i></label>
@@ -49,10 +49,16 @@
       <input type='text' name='country' placeholder="Country*">
   </div>  
 
-  <div class="signup-image">
+  {{!-- <div class="signup-image">
     <label for='picture'><i class="fas fa-camera-retro"></i></label>
      <input type='text' name='picture' placeholder="link your profile picture here">
+  </div>   --}}
+  
+  <div class="signup-image">
+    <label for='picture'><i class="fas fa-camera-retro"></i></label>
+     <input type='file' name='image' placeholder="Add your profile picture here">
   </div>  
+
 
   <button class="signup-btn" type='submit'>Sign Up</button>
 </form>
