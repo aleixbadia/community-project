@@ -2,7 +2,10 @@ var express = require("express");
 var router = express.Router();
 const User = require("./../models/users");
 const Design = require("./../models/designs");
+const Order = require("./../models/orders");
 const { isLoggedIn } = require("./../utils/middleware");
+
+const fileUploader = require('./../configs/cloudinary');
 
 /* GET users listing. */
 router.get("/", isLoggedIn, async (req, res, next) => {
@@ -59,10 +62,12 @@ router.post("/edit", isLoggedIn, function (req, res, next) {
     .catch((err) => console.log(err));
 });
 
-router.get("/orders", isLoggedIn, function (req, res, next) {
+router.get("/orders", isLoggedIn, async (req, res, next) => {
   const logged = true;
   const profile = true;
-  res.render("profile/orders", { logged, profile });
+  const userId = req.session.currentUser._id;
+  const orders = await Order.find( { userId }).populate("cart.designId")
+  res.render("profile/orders", { logged, profile, orders, userId });
 });
 
 router.get("/upload", isLoggedIn, function (req, res, next) {
@@ -71,14 +76,18 @@ router.get("/upload", isLoggedIn, function (req, res, next) {
   res.render("profile/upload", { logged, profile });
 });
 
-router.post("/upload", isLoggedIn, async (req, res, next) => {
+router.post("/upload", isLoggedIn, fileUploader.single('image'), async (req, res, next) => {
   const logged = true;
 
-  const { name, description, url } = req.body
+  const { name, description,} = req.body
+  const url = req.file.path
 
-  const createdDesign = await Design.create({ name, description, url })
+  console.log("name", name, "description", description)
+  console.log("url", url)
+
+  // const createdDesign = await Design.create({ name, description, url: req.file.path })
   
-  res.rendirect("/profile", { logged });
+  // res.redirect("/profile", { logged });
 });
 
 router.get("/edit/:designId", isLoggedIn, async (req, res, next) => {

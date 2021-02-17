@@ -1,4 +1,4 @@
-<form class="edit-design-form" action='/profile/upload/' method='POST'>
+<form class="edit-design-form" action='/profile/upload/' enctype="multipart/form-data" method='POST'>
 
 <div class="design-name flex">
   <label for=''><i class="fas fa-quote-left"></i></label>
@@ -13,6 +13,11 @@
 <div class="design-link flex">
   <label for=''><i class="fas fa-camera-retro"></i></label>
   <input type='text' name='url' placeholder="Link you design here">
+</div>
+
+<div class="design-link flex">
+  <label for=''><i class="fas fa-camera-retro"></i></label>
+  <input type="file" name="image" id="image-input" class="form-control-file" />
 </div>
 
   <button class="edit-design" type='submit'>Create Design</button>

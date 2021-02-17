@@ -3,6 +3,8 @@ var router = express.Router();
 const Design = require("./../models/designs");
 const Vote = require("./../models/votes");
 const User = require("./../models/users");
+const Order = require("./../models/orders");
+
 
 const minVotes = 3;
 const minRating = 0.5;
@@ -168,12 +170,23 @@ router.get("/purchase", function (req, res, next) {
   res.redirect("/checkout");
 });
 
-router.get("/checkout", function (req, res, next) {
+router.get("/checkout", async (req, res, next) => {
   const logged = checkLogin(req);
-  const user = req.session.currentUser;
+  const userId = req.session.currentUser._id;
+  
+  //TAKE CURRENT CART INFO
+  const user = await User.findById(userId)
+  const cart = user.currentCart  
 
-  O
+  //CREATE THE ORDER WITH CART INFO 
+  await Order.create( { userId, cart })
+  
+  //CLEAR USER CURRENT CART
+  await User.findByIdAndUpdate(userId, { currentCart: [] }, {new: true})
 
+  //ADD COMPOINTS TO DESIGNER
+
+  
   res.render("shop/checkout", { logged });
 });
 

@@ -1,3 +1,20 @@
 <h2>Your orders</h2>
+<h2>Your Id</h2>
+<p>{{userId}}</p>
+
+{{#each orders}}
+    <h2>Order: </h2>
+    {{#each this.cart}}
+    <div class="order-container">
+        <p>{{this.quantity}} x {{this.designId.price}}</p>
+        <p>{{this.designId.name}}</p>
+        <div class="order-img-container">
+            <img src="{{this.designId.url}}" alt="img">
+        </div>
+    </div>
+    <br>
+    {{/each}}
+
+{{/each}}
 
 <a href="/profile">Back to profile</a>
