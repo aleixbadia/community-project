@@ -1,16 +1,17 @@
-var express = require("express");
-var router = express.Router();
+require('dotenv').config();
+const express = require("express");
+const router = express.Router();
+
 const Design = require("./../models/designs");
 const Vote = require("./../models/votes");
 const User = require("./../models/users");
 
 const minVotes = 3;
 const minRating = 0.5;
+const shipping = 3;
 
 function checkLogin(req) {
   if (req.session.currentUser) {
-    // if user has an authenticated cookie
-    User.find
     return req.session.currentUser;
   } else {
     return false;
@@ -85,9 +86,7 @@ router.get("/vote/:designId", async (req, res, next) => {
     const logged = checkLogin(req);
     let userId;
 
-    const data = await Design.findById(req.params.designId).populate(
-      "userId"
-    );
+    const data = await Design.findById(req.params.designId).populate("userId");
 
     if (logged) {
       userId = req.session.currentUser._id;
@@ -104,7 +103,6 @@ router.get("/vote/:designId", async (req, res, next) => {
     } else {
       availableToVote = false;
     }
-
 
     res.render("shop/vote", { logged, availableToVote, data });
   } catch (err) {
@@ -127,7 +125,8 @@ router.get("/cart", function (req, res, next) {
   const logged = checkLogin(req);
   const id = req.session.currentUser._id;
   let total = 0;
-  const shipping = 3;
+
+  res.locals.stripePK = process.env.STRIPE_PUBLIC_KEY;
 
   User.findById(id)
     .populate("currentCart.designId")
@@ -146,7 +145,6 @@ router.get("/cart", function (req, res, next) {
 
 router.post("/cart", function (req, res, next) {
   const id = req.session.currentUser._id;
-
   const { quantity, designId } = req.body;
 
   User.findOneAndUpdate(
@@ -154,24 +152,46 @@ router.post("/cart", function (req, res, next) {
     { $push: { currentCart: { quantity, designId } } }
   )
     .then((user) => {
-      console.log(user.currentCart);
-
       res.redirect("/products");
+    })
+    .catch((err) => console.log(err));
+});
+
+router.post("/cart/delete", function (req, res, next) {
+  const id = req.session.currentUser._id;
+  const { designId } = req.body;
+
+  User.findOneAndUpdate(
+    { _id: id },
+    { $pull: { currentCart: { designId: designId } } }
+  )
+    .then(() => {
+      res.redirect("/cart");
     })
     .catch((err) => console.log(err));
 });
 
 router.get("/purchase", function (req, res, next) {
   //Stripe implementation
-  
+
   res.redirect("/checkout");
+});
+
+router.post("/create-payment-intent", async (req, res) => {
+  const { items } = req.body;
+  // Create a PaymentIntent with the order amount and currency
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: 1000,
+    currency: "eur",
+  });
+  res.send({
+    clientSecret: paymentIntent.client_secret,
+  });
 });
 
 router.get("/checkout", function (req, res, next) {
   const logged = checkLogin(req);
   const user = req.session.currentUser;
-
-  O
 
   res.render("shop/checkout", { logged });
 });

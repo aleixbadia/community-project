@@ -19,6 +19,7 @@
     "http-errors": "~1.6.3",
     "mongoose": "^5.11.16",
     "morgan": "~1.9.1",
+    "stripe": "^8.136.0",
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {

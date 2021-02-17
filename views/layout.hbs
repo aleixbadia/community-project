@@ -6,14 +6,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Community Designs</title>
-  <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />  
+  <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+    crossorigin="anonymous" />
   <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="https://js.stripe.com/v3/"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
 </head>
 
 <body>
   {{#if logged}}
- 
+
   <nav class="navbar flexsb">
     <div class="logo flex">
       <div class="img-wrapper flex">
@@ -23,7 +27,7 @@
     </div>
     <div class="userform">
       <ul class="flexsb">
-        <li class="cart-text flex"><a href="/cart">Cart {{logged.currentCart.length}}</a></li>
+        <li class="cart-text flex"><a href="/cart">Cart</a></li>
         <li class="cart-icon flex"><a href="/cart"><i class="fas fa-shopping-cart"></i></a></li>
         <li class="profile-text flex"><a href="/profile">Profile</a></li>
         <li class="profile-icon flex"><a href="/profile"><i class="fas fa-user"></i></a></li>
@@ -38,7 +42,7 @@
   </nav>
 
   {{else}}
- 
+
   <nav class="navbar flexsb">
     <div class="logo flex">
       <div class="img-wrapper flex">
@@ -58,9 +62,9 @@
 
   {{/if}}
 
-<div class="page-wrapper">
-  {{{body}}}
-</div>
+  <div class="page-wrapper">
+    {{{body}}}
+  </div>
 
 
   {{!-- <footer class="footer flex">
