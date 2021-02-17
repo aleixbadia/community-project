@@ -192,20 +192,23 @@ router.post("/create-payment-intent", async (req, res) => {
   });
 });
 
-router.get("/checkout", function (req, res, next) {
+router.get("/checkout", async (req, res, next) => {
   const logged = checkLogin(req);
   const userId = req.session.currentUser._id;
   
   //TAKE CURRENT CART INFO
-  const user = await User.findById(userId)
+  const user = await User.findById(userId).populate("currentCart.designId")
   const cart = user.currentCart  
-
+  cart.forEach( async (item) => {
+    const updatedPoints = await User.findByIdAndUpdate(item.designId.userId, { $inc: { com_points : 100 }}, {new: true})
+    console.log(updatedPoints)
+  })
   //CREATE THE ORDER WITH CART INFO 
   await Order.create( { userId, cart })
-  
+
   //CLEAR USER CURRENT CART
   await User.findByIdAndUpdate(userId, { currentCart: [] }, {new: true})
-
+  
   //ADD COMPOINTS TO DESIGNER
 
   
