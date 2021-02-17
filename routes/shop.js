@@ -10,7 +10,8 @@ const minRating = 0.5;
 function checkLogin(req) {
   if (req.session.currentUser) {
     // if user has an authenticated cookie
-    return true;
+    User.find
+    return req.session.currentUser;
   } else {
     return false;
   }
@@ -162,14 +163,17 @@ router.post("/cart", function (req, res, next) {
 });
 
 router.get("/purchase", function (req, res, next) {
-  const logged = checkLogin(req);
-  //data missing
-  res.render("shop/purchase", { logged });
+  //Stripe implementation
+  
+  res.redirect("/checkout");
 });
 
 router.get("/checkout", function (req, res, next) {
   const logged = checkLogin(req);
-  //data missing
+  const user = req.session.currentUser;
+
+  O
+
   res.render("shop/checkout", { logged });
 });
 

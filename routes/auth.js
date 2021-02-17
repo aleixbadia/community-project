@@ -87,7 +87,8 @@ router.post("/signup", function (req, res, next) {
     address,
     picture,
   })
-    .then(() => {
+    .then((user) => {
+      req.session.currentUser = user; // Triggers creation of the session and cookie
       res.redirect("/");
     })
     .catch((err) => console.log(err));

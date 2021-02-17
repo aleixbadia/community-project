@@ -6,13 +6,13 @@
   </div>
 
   <div class="flex">
-   <label for='password'><i class="fas fa-unlock-alt"></i></label>
-   <input type='password' name='password' placeholder="Password">
+    <label for='password'><i class="fas fa-unlock-alt"></i></label>
+    <input type='password' name='password' placeholder="Password">
   </div>
 
   <button class="login-btn" type='submit'>Log In</button>
+  <p>Already not a member? <a href="/auth/signup">Sign up</a></p>
 </form>
-
 
 <div class="splash-container">
   <img class="splash" src="/images/cmyk_dots.svg" alt="splash">
@@ -21,7 +21,7 @@
 {{!-- error message display: --}}
 
 {{#if errorMessage}}
-  <div class="error-message">
-    {{ errorMessage }}
-  </div>
+<div class="error-message">
+  {{ errorMessage }}
+</div>
 {{/if}}
