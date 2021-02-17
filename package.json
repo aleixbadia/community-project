@@ -20,8 +20,12 @@
     "http-errors": "~1.6.3",
     "mongoose": "^5.11.16",
     "morgan": "~1.9.1",
+<<<<<<< HEAD
     "multer": "^1.4.2",
     "multer-storage-cloudinary": "^4.0.0",
+=======
+    "stripe": "^8.136.0",
+>>>>>>> 208651a3796e298ba59398c3366d819bded40d06
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
