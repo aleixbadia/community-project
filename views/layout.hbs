@@ -23,12 +23,16 @@
     </div>
     <div class="userform">
       <ul class="flexsb">
-        <li class="cart-text flex"><a href="/cart">Cart</a></li>
+        <li class="cart-text flex"><a href="/cart">Cart {{logged.currentCart.length}}</a></li>
         <li class="cart-icon flex"><a href="/cart"><i class="fas fa-shopping-cart"></i></a></li>
         <li class="profile-text flex"><a href="/profile">Profile</a></li>
         <li class="profile-icon flex"><a href="/profile"><i class="fas fa-user"></i></a></li>
         <li class="logout-text flex"><a href="/auth/logout">Log Out</a></li>
         <li class="logout-icon flex"><a href="/auth/logout"><i class="fas fa-sign-out-alt"></i></a></li>
+        {{#unless profile}}
+        <li>{{logged.name.firstName}} {{logged.name.lastName}}</li>
+        <li><img src="{{logged.picture}}" alt="user-picture"></li>
+        {{/unless}}
       </ul>
     </div>
   </nav>

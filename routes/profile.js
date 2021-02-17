@@ -8,10 +8,11 @@ const { isLoggedIn } = require("./../utils/middleware");
 router.get("/", isLoggedIn, async (req, res, next) => {
   try {
     const logged = true;
+    const profile = true;
     const id = req.session.currentUser._id;
     let user = await User.findById(id)
     let designs = await Design.find({userId: id})
-    res.render("profile/user", { logged, user, designs });
+    res.render("profile/user", { logged, profile, user, designs });
   } catch (error) {
     console.log(err)
   }
@@ -19,10 +20,11 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 
 router.get("/edit", isLoggedIn, function (req, res, next) {
   const logged = true;
+  const profile = true;
   const id = req.session.currentUser._id;
   User.findById(id)
     .then((user) => {
-      res.render("profile/editDetails", { logged, user });
+      res.render("profile/editDetails", { logged, profile, user });
     })
     .catch((err) => console.log(err));
 });
@@ -59,12 +61,14 @@ router.post("/edit", isLoggedIn, function (req, res, next) {
 
 router.get("/orders", isLoggedIn, function (req, res, next) {
   const logged = true;
-  res.render("profile/orders", { logged });
+  const profile = true;
+  res.render("profile/orders", { logged, profile });
 });
 
 router.get("/upload", isLoggedIn, function (req, res, next) {
   const logged = true;
-  res.render("profile/upload", { logged });
+  const profile = true;
+  res.render("profile/upload", { logged, profile });
 });
 
 router.post("/upload", isLoggedIn, async (req, res, next) => {
