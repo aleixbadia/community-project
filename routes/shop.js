@@ -115,7 +115,8 @@ router.post("/vote/:designId", async (req, res, next) => {
   try {
     const userId = req.session.currentUser._id;
     const { designId, rating } = req.body;
-    const createdVote = await Vote.create({ userId, designId, rating });
+    await Vote.create({ userId, designId, rating });
+    await User.findByIdAndUpdate(userId, { $inc: { com_points : 10 }});
     res.redirect("/vote");
   } catch (err) {
     console.log(err);
