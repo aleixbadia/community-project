@@ -1,4 +1,4 @@
-<form action='/profile/edit' method='POST'>
+<form action='/profile/edit' enctype="multipart/form-data" method='POST'>
 
   <div class="signup-name">
     <label for='firstName'><i class="fas fa-user"></i></label>
@@ -43,7 +43,7 @@
 
   <div class="signup-image">
     <label for='picture'><i class="fas fa-camera-retro"></i></label>
-     <input type='text' name='picture' value="{{user.picture}}">
+     <input type='file' name='image' placeholder="Add your profile picture here">
   </div>  
 
   <button class="edit-profile-btn" type='submit'>Edit Your Info</button>
