@@ -74,6 +74,18 @@ router.get("/products/:designId", async (req, res, next) => {
   try {
     const logged = await checkLogin(req);
     const data = await Design.findById(req.params.designId).populate("userId");
+    let votesFound = await Vote.find();
+    
+    data.votes = 0;
+    data.rating = 0;
+
+    votesFound.forEach((vote) => {
+      if (String(data._id) === String(vote.designId)) {
+        //Calculation of total votes and rating
+        data.votes++;
+        data.rating += vote.rating;
+      }
+    });
     res.render("shop/buy", { logged, data });
   } catch (error) {
     console.log(err);
@@ -95,11 +107,23 @@ router.get("/vote", async (req, res, next) => {
 
 router.get("/vote/:designId", async (req, res, next) => {
   try {
-    const logged = await checkLogin(req);
     let availableToVote = true;
     let userId;
-
+    
+    const logged = await checkLogin(req);
     const data = await Design.findById(req.params.designId).populate("userId");
+    let votesFound = await Vote.find();
+    
+    data.votes = 0;
+    data.rating = 0;
+
+    votesFound.forEach((vote) => {
+      if (String(data._id) === String(vote.designId)) {
+        //Calculation of total votes and rating
+        data.votes++;
+        data.rating += vote.rating;
+      }
+    });
 
     if (logged) {
       userId = req.session.currentUser._id;
