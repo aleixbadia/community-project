@@ -622,9 +622,16 @@ form > div > select:focus {
   margin: 0 2px;
 }
 
-.designer-data > a > img {
+.designer-data-img-wrapper {
+  height: 75px;
+  width: 75px;
+}
+
+.designer-data-img-wrapper > img {
   border-radius: 50%;
   margin: 0 15px;
+  height: 100%;
+  width: 100%;
 }
 
 .title {
