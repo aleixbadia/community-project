@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 
 const User = require("./../models/users");
+const fileUploader = require('../configs/cloudinary.config');
 
 /* GET LOG-IN */
 router.get("/login", function (req, res, next) {
@@ -56,7 +57,7 @@ router.get("/signup", function (req, res, next) {
 });
 
 /* POST SIGN-UP */
-router.post("/signup", function (req, res, next) {
+router.post("/signup", fileUploader.single('image'), function (req, res, next) {
   const {
     firstName,
     lastName,
@@ -69,8 +70,10 @@ router.post("/signup", function (req, res, next) {
     state,
     country,
     postcode,
-    picture,
   } = req.body;
+
+  const picture = req.file.path;
+
   const name = { firstName, lastName };
   const address = { street, city, state, country, postcode };
 

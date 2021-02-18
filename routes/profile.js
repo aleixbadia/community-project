@@ -5,7 +5,7 @@ const Design = require("./../models/designs");
 const Order = require("./../models/orders");
 const { isLoggedIn } = require("./../utils/middleware");
 
-const fileUploader = require('./../configs/cloudinary');
+const fileUploader = require('../configs/cloudinary.config');
 
 /* GET users listing. */
 router.get("/", isLoggedIn, async (req, res, next) => {
@@ -32,7 +32,7 @@ router.get("/edit", isLoggedIn, function (req, res, next) {
     .catch((err) => console.log(err));
 });
 
-router.post("/edit", isLoggedIn, function (req, res, next) {
+router.post("/edit", isLoggedIn, fileUploader.single('image'), function (req, res, next) {
   const id = req.session.currentUser._id;
 
   const {
@@ -45,18 +45,17 @@ router.post("/edit", isLoggedIn, function (req, res, next) {
     postcode,
     state,
     country,
-    picture,
   } = req.body;
+
+  const picture = req.file.path
 
   User.findByIdAndUpdate(
     id,
-    { "name.firstName": firstName, "name.lastName": lastName, age: age },
+    { "name.firstName": firstName, "name.lastName": lastName, age, picture, gender, "addres.street": street, "addres.city": city, "addres.postcode": postcode, "addres.state": state, "addres.country": country  },
     { new: true }
   )
     .then((updatedUser) => {
       console.log(updatedUser);
-      const logged = true;
-      const { name, picture } = updatedUser;
       res.redirect("/profile");
     })
     .catch((err) => console.log(err));
@@ -76,18 +75,19 @@ router.get("/upload", isLoggedIn, function (req, res, next) {
   res.render("profile/upload", { logged, profile });
 });
 
-router.post("/upload", isLoggedIn, fileUploader.single('image'), async (req, res, next) => {
-  const logged = true;
-
+router.post("/upload", isLoggedIn, fileUploader.single('image'), (req, res, next) => {
   const { name, description,} = req.body
   const url = req.file.path
+  const userId = req.session.currentUser._id
 
   console.log("name", name, "description", description)
   console.log("url", url)
 
-  // const createdDesign = await Design.create({ name, description, url: req.file.path })
-  
-  // res.redirect("/profile", { logged });
+  Design.create({ userId, name, description, url: req.file.path })
+  .then( (data) => {
+    res.redirect("/profile");
+  })
+  .catch( (err) => console.log(err));
 });
 
 router.get("/edit/:designId", isLoggedIn, async (req, res, next) => {
