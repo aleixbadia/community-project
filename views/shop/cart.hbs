@@ -1,17 +1,22 @@
 {{#if user.display}}
 <h2>This is your cart</h2>
-<ul>
+
+<ul class="all-products">
     {{#each user.currentCart}}
-    <li>
-        <h4>{{this.designId.name}}</h4>
-        <img src="{{this.designId.url}}" alt="">
-        <p>{{this.designId.description}}</p>
-        <p>{{this.quantity}}u x {{this.designId.price}}€ = {{this.subtotal}}€</p>
-        <form action='/cart/delete' method='POST'>
-            <input type='text' name='designId' value={{this.designId._id}} style="display: none">
-            <button type='submit'>Delete</button>
-        </form>
-    </li>
+    <div class="single-product flex">
+            <div class="product-img">
+                <img src="{{this.designId.url}}" alt="">
+            </div>
+            <div class="product-text flex">
+                <h4>{{this.designId.name}}</h4>
+                <p>{{this.designId.description}}</p>
+            </div>
+                <p>{{this.quantity}}u x {{this.designId.price}}€ = {{this.total}}€</p>
+            <form class="delete-form" action='/cart/delete' method='POST'>
+                <input type='text' name='designId' value={{this.designId._id}} style="display: none">
+                <button type='submit'>Delete</button>
+            </form>
+    </div>
     {{/each}}
 </ul>
 

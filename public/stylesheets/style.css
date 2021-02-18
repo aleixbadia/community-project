@@ -117,15 +117,32 @@ body {
   justify-content: center;
 }
 
+.userform li > a:active {
+  color: #fff;
+}
+
 .userform li > a:hover {
   background-color: var(--bone);
   color: var(--black);
 }
 
-.userform li > a:active {
-  color: #fff;
+.buy-text > a {
+  background-color: var(--cyan);
 }
 
+.vote-text > a {
+  background-color: var(--magenta);
+}
+
+.buy-hover:hover {
+  background-color: var(--orange) !important;
+  color: var(--bone) !important
+}
+
+.vote-hover:hover {
+  background-color: var(--green) !important;
+  color: var(--bone) !important
+}
 .nav-bar-img-wrapper > a {
   height: 60px;
   width: 60px;
@@ -351,6 +368,60 @@ form > div > select:focus {
   background-color: var(--magenta);
 }
 
+/*---------------------------- CART ----------------------------*/
+
+.all-products {
+  border: 1px solid red;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.single-product {
+  border: 1px solid green;
+  width: 90%;
+  margin: 0 auto;
+  flex-direction: row;
+}
+
+.product-img {
+  height: 100px;
+}
+
+.product-img >img {
+  height: 100%;
+}
+
+.product-text {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.single-product > .product-img {
+  width: 20%;
+}
+
+.single-product > .product-text{
+  width: 30%;
+}
+
+
+.single-product > p {
+  width: 30%;
+  text-align: center;
+}
+
+.delete-form {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  background-color: #fff;
+  width: 10%;
+}
+
+.single-product > form > button {
+  width: 20%;
+}
 /*---------------------------- USER PROFILE ----------------------------*/
 
 .profile {
