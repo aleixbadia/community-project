@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 
@@ -7,35 +7,46 @@ const Vote = require("./../models/votes");
 const User = require("./../models/users");
 const Order = require("./../models/orders");
 
-
 const minVotes = 3;
 const minRating = 0.5;
 const shipping = 3;
 
-function checkLogin(req) {
-  if (req.session.currentUser) {
-    return req.session.currentUser;
-  } else {
-    return false;
-  }
-}
+const checkLogin = async (req) => {
+  try {
+    if (req.session.currentUser) {
+      const user = await User.findById(req.session.currentUser._id);
+      return user;
+    } else {
+      return false;
+    }
+  } catch (error) {}
+};
 
 /* GET shop pages. */
-router.get("/", function (req, res, next) {
-  const logged = checkLogin(req);
-  res.render("main", { logged });
+router.get("/", async (req, res, next) => {
+  try {
+    const logged = await checkLogin(req);
+    res.render("main", { logged });
+  } catch (error) {
+    console.log(err);
+  }
 });
 
-router.get("/business-model", function (req, res, next) {
-  res.render("business-model");
+router.get("/business-model", async (req, res, next) => {
+  try {
+    const logged = await checkLogin(req);
+    res.render("business-model", { logged });
+  } catch (error) {
+    console.log(err);
+  }
 });
 
 router.get("/products", async (req, res, next) => {
-  const logged = checkLogin(req);
   let rating = 0;
   let votesByDesign = 0;
   let data = [];
   try {
+    const logged = await checkLogin(req);
     let designsFound = await Design.find();
     let votesFound = await Vote.find();
 
@@ -59,33 +70,33 @@ router.get("/products", async (req, res, next) => {
   }
 });
 
-router.get("/products/:designId", function (req, res, next) {
-  const logged = checkLogin(req);
-  Design.findById(req.params.designId)
-    .populate("userId")
-    .then((data) => {
-      res.render("shop/buy", { logged, data });
-    })
-    .catch((err) => console.log(err));
+router.get("/products/:designId", async (req, res, next) => {
+  try {
+    const logged = await checkLogin(req);
+    const data = await Design.findById(req.params.designId).populate("userId");
+    res.render("shop/buy", { logged, data });
+  } catch (error) {
+    console.log(err);
+  }
 });
 
-router.get("/vote", function (req, res, next) {
-  const logged = checkLogin(req);
-  Design.find()
-    .then((data) => {
-      data.forEach((design) => {
-        design.vote = true;
-      });
-
-      res.render("shop/gallery", { logged, data });
-    })
-    .catch((err) => console.log(err));
+router.get("/vote", async (req, res, next) => {
+  try {
+    const logged = await checkLogin(req);
+    const data = await Design.find();
+    data.forEach((design) => {
+      design.vote = true;
+    });
+    res.render("shop/gallery", { logged, data });
+  } catch (error) {
+    console.log(err);
+  }
 });
 
 router.get("/vote/:designId", async (req, res, next) => {
   try {
+    const logged = await checkLogin(req);
     let availableToVote = true;
-    const logged = checkLogin(req);
     let userId;
 
     const data = await Design.findById(req.params.designId).populate("userId");
@@ -117,107 +128,104 @@ router.post("/vote/:designId", async (req, res, next) => {
     const userId = req.session.currentUser._id;
     const { designId, rating } = req.body;
     await Vote.create({ userId, designId, rating });
-    await User.findByIdAndUpdate(userId, { $inc: { com_points : 10 }});
+    await User.findByIdAndUpdate(userId, { $inc: { com_points: 10 } });
     res.redirect("/vote");
   } catch (err) {
     console.log(err);
   }
 });
 
-router.get("/cart", function (req, res, next) {
-  const logged = checkLogin(req);
-  const id = req.session.currentUser._id;
-  let total = 0;
+router.get("/cart", async (req, res, next) => {
+  try {
+    const logged = await checkLogin(req);
+    const id = logged._id;
+    let total = 0;
 
-  res.locals.stripePK = process.env.STRIPE_PUBLIC_KEY;
+    res.locals.stripePK = process.env.STRIPE_PUBLIC_KEY;
 
-  User.findById(id)
-    .populate("currentCart.designId")
-    .then((user) => {
-      user.currentCart.forEach((product) => {
-        product.subtotal = product.quantity * product.designId.price;
-        total += product.subtotal;
-      });
-      user.currentCartV = total;
-      user.shipping = shipping;
-      user.finalCost = total + shipping;
-      res.render("shop/cart", { logged, user });
-    })
-    .catch((err) => console.log(err));
+    const user = await User.findById(id).populate("currentCart.designId");
+
+    user.currentCart.forEach((product) => {
+      product.subtotal = product.quantity * product.designId.price;
+      total += product.subtotal;
+    });
+    user.currentCartV = total;
+    user.shipping = shipping;
+    user.finalCost = total + shipping;
+    res.render("shop/cart", { logged, user });
+
+    const data = await Design.findById(req.params.designId).populate("userId");
+    res.render("shop/buy", { logged, data });
+  } catch (error) {
+    console.log(err);
+  }
 });
 
-router.post("/cart", function (req, res, next) {
-  const id = req.session.currentUser._id;
-  const { quantity, designId } = req.body;
+router.post("/cart", async (req, res, next) => {
+  try {
+    const id = req.session.currentUser._id;
+    const { quantity, designId } = req.body;
 
-  User.findOneAndUpdate(
-    { _id: id },
-    { $push: { currentCart: { quantity, designId } } }
-  )
-    .then((user) => {
-      res.redirect("/products");
-    })
-    .catch((err) => console.log(err));
+    const user = await User.findOneAndUpdate(
+      { _id: id },
+      { $push: { currentCart: { quantity, designId } } }
+    );
+
+    res.redirect("/products");
+  } catch (error) {
+    console.log(err);
+  }
 });
 
-router.post("/cart/delete", function (req, res, next) {
-  const id = req.session.currentUser._id;
-  const { designId } = req.body;
+router.post("/cart/delete", async (req, res, next) => {
+  try {
+    const id = req.session.currentUser._id;
+    const { designId } = req.body;
 
-  User.findOneAndUpdate(
-    { _id: id },
-    { $pull: { currentCart: { designId: designId } } }
-  )
-    .then(() => {
-      res.redirect("/cart");
-    })
-    .catch((err) => console.log(err));
-});
+    await User.findOneAndUpdate(
+      { _id: id },
+      { $pull: { currentCart: { designId: designId } } }
+    );
 
-router.get("/purchase", function (req, res, next) {
-  //Stripe implementation
-
-  res.redirect("/checkout");
-});
-
-router.post("/create-payment-intent", async (req, res) => {
-  const { items } = req.body;
-  // Create a PaymentIntent with the order amount and currency
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: 1000,
-    currency: "eur",
-  });
-  res.send({
-    clientSecret: paymentIntent.client_secret,
-  });
+    res.redirect("/cart");
+  } catch (error) {
+    console.log(err);
+  }
 });
 
 router.get("/checkout", async (req, res, next) => {
-  const logged = checkLogin(req);
-  const userId = req.session.currentUser._id;
+  try {
+    const logged = await checkLogin(req);
+    const userId = req.session.currentUser._id;
   
-  //TAKE CURRENT CART INFO
-  const user = await User.findById(userId).populate("currentCart.designId")
-  const cart = user.currentCart  
-  cart.forEach( async (item) => {
-    const updatedPoints = await User.findByIdAndUpdate(item.designId.userId, { $inc: { com_points : 100 }}, {new: true})
-    console.log(updatedPoints)
-  })
-  //CREATE THE ORDER WITH CART INFO 
-  await Order.create( { userId, cart })
-
-  //CLEAR USER CURRENT CART
-  await User.findByIdAndUpdate(userId, { currentCart: [] }, {new: true})
+    //TAKE CURRENT CART INFO
+    const user = await User.findById(userId).populate("currentCart.designId");
+    const cart = user.currentCart;
+    cart.forEach(async (item) => {
+      const updatedPoints = await User.findByIdAndUpdate(
+        item.designId.userId,
+        { $inc: { com_points: 100 } },
+        { new: true }
+      );
+      console.log(updatedPoints);
+    });
+    //CREATE THE ORDER WITH CART INFO
+    await Order.create({ userId, cart });
   
-  //ADD COMPOINTS TO DESIGNER
-
+    //CLEAR USER CURRENT CART
+    await User.findByIdAndUpdate(userId, { currentCart: [] }, { new: true });
   
-  res.render("shop/checkout", { logged });
+    //ADD COMPOINTS TO DESIGNER
+  
+    res.render("shop/checkout", { logged });
+  } catch (error) {
+    console.log(err);
+  }
 });
 
 router.get("/user/:userId", async (req, res, next) => {
   try {
-    const logged = checkLogin(req);
+    const logged = await checkLogin(req);
     const userData = await User.findById(req.params.userId);
     const userDesigns = await Design.find({ userId: req.params.userId });
     const votes = await Vote.find();
