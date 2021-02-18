@@ -174,7 +174,7 @@ router.get("/cart", async (req, res, next) => {
 
     if (user.currentCart.length !== 0) {
       user.currentCart.forEach((product) => {
-        product.productSubtotal = product.quantity * product.designId.price
+        product.productSubtotal =
           Math.round(
             (product.quantity * product.designId.price + Number.EPSILON) * 100
           ) / 100;
@@ -183,7 +183,8 @@ router.get("/cart", async (req, res, next) => {
       });
       user.subtotal = Math.round((subtotal + Number.EPSILON) * 100) / 100;
       user.shipping = shipping * products;
-      user.total = Math.round((subtotal + user.shipping + Number.EPSILON) * 100) / 100;
+      user.total =
+        Math.round((subtotal + user.shipping + Number.EPSILON) * 100) / 100;
       user.display = true;
     } else {
       user.display = false;
