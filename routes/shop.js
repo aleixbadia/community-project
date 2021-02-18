@@ -174,16 +174,16 @@ router.get("/cart", async (req, res, next) => {
 
     if (user.currentCart.length !== 0) {
       user.currentCart.forEach((product) => {
-        product.productSubtotal =
+        product.productSubtotal = product.quantity * product.designId.price
           Math.round(
-            (product.quantity * product.designId.price + Number.EPSILON) * 1000
-          ) / 1000;
+            (product.quantity * product.designId.price + Number.EPSILON) * 100
+          ) / 100;
         subtotal += product.productSubtotal;
         products += product.quantity;
       });
-      user.subtotal = subtotal;
+      user.subtotal = Math.round((subtotal + Number.EPSILON) * 100) / 100;
       user.shipping = shipping * products;
-      user.total = subtotal + user.shipping;
+      user.total = Math.round((subtotal + user.shipping + Number.EPSILON) * 100) / 100;
       user.display = true;
     } else {
       user.display = false;
