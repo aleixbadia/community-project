@@ -379,7 +379,7 @@ form > div > select:focus {
 .single-product {
   border: 1px solid green;
   width: 90%;
-  margin: 0 auto;
+  margin: 20px auto;
   flex-direction: row;
 }
 
@@ -421,6 +421,7 @@ form > div > select:focus {
 
 .single-product > form > button {
   width: 20%;
+  text-align: center;
 }
 /*---------------------------- USER PROFILE ----------------------------*/
 
