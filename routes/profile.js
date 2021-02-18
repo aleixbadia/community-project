@@ -66,6 +66,7 @@ router.get("/orders", isLoggedIn, async (req, res, next) => {
   const profile = true;
   const userId = req.session.currentUser._id;
   const orders = await Order.find( { userId }).populate("cart.designId")
+  console.log(orders[0].created_at)
   res.render("profile/orders", { logged, profile, orders, userId });
 });
 

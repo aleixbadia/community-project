@@ -1,10 +1,43 @@
-<h2>Your orders</h2>
-<h2>Your Id</h2>
-<p>{{userId}}</p>
+<h2 class="your-orders">Your orders</h2>
+
+
+<div class="order-gallery flex">
 
 {{#each orders}}
-    <h2>Order: </h2>
-    {{#each this.cart}}
+    <div class="single-order flex">
+        
+        <h3>Order ID {{this.id}}</h3>
+        {{#each this.cart}}
+        <div class="order-details flex">
+            <div class="order-image">
+                <img src="{{this.designId.url}}" alt="img">
+            </div>
+            <div class="order-price">
+                <p>{{this.quantity}} x {{this.designId.price}}</p>
+            </div>
+            <div class="order-name">
+                <p>{{this.designId.name}}</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+
+    <div class="prices">
+        <div class="money">
+            <h3>Subtotal: 10€</h3>
+            <h3>Shipping: 3€</h3>
+            <h3>Total: 13€</h3>
+        </div>
+        <h4>Purchased on: {{this.created_at}}</h4>
+    </div>
+{{/each}}
+
+<a class="back-to-profile" href="/profile">Back to profile</a>
+
+</div>
+
+
+{{!-- 
     <div class="order-container">
         <p>{{this.quantity}} x {{this.designId.price}}</p>
         <p>{{this.designId.name}}</p>
@@ -12,9 +45,4 @@
             <img src="{{this.designId.url}}" alt="img">
         </div>
     </div>
-    <br>
-    {{/each}}
-
-{{/each}}
-
-<a href="/profile">Back to profile</a>
+    <br> --}}

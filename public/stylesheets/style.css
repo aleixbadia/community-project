@@ -62,7 +62,6 @@ body {
   background-color: var(--black);
   color: #fff;
   height: 60px;
-  padding: 0 50px;
   font-size: 1rem;
 }
 
@@ -72,6 +71,7 @@ body {
   height: 60px;
   padding: 16px 30px 0 30px;
   color: #fff;
+  width: 240px;
 }
 
 .img-wrapper {
@@ -79,6 +79,7 @@ body {
   height: 60px;
   overflow: hidden;
   border-radius: 50%;
+  margin-left: 5%;
 }
 
 .img-wrapper > img {
@@ -99,7 +100,9 @@ body {
 .profile-icon,
 .logout-icon,
 .login-icon,
-.signup-icon {
+.signup-icon,
+.buy-icon,
+.vote-icon {
   display: none;
   font-size: 1rem;
 }
@@ -107,7 +110,7 @@ body {
 .userform li > a {
   margin: 0;
   height: 60px;
-  padding: 16px 30px 16px 30px;
+  padding: 16px 25px;
   color: #fff;
   display: flex;
   align-items: center;
@@ -159,7 +162,13 @@ body {
   align-items: center;
   padding-top: 5px;
 }
+
+.logout-text > a{
+  padding: 5px;
+}
+
 /*---------------------------- MAIN PAGE ----------------------------*/
+
 .main-h1 {
   text-align: center;
   margin: 100px 0 50px 0;
@@ -478,6 +487,100 @@ form > div > select:focus {
 .edit-design:hover {
   background-color: var(--yellow);
 }
+
+/*---------------------------- ORDERS ----------------------------*/
+
+.your-orders {
+  text-align: center;
+  margin: 60px 20px;
+  font-size: 2rem;
+}
+
+.order-gallery {
+  flex-direction: column;
+  align-items: flex-start;
+  align-items: flex-start;
+}
+
+.single-order {
+  margin: 0 5px;
+  padding: 20px 100px 10px 100px;
+  background-color: #eee;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: start;
+}
+
+.single-order h3 {
+  padding-top: 30px;
+  margin-bottom: 30px;
+}
+
+.order-details {
+  flex-direction: row;
+  margin: 5px 10px 30px 5px;
+  /* width: 20%;  */
+}
+
+.order-details > div {
+  margin: 0 15px 0 0;
+}
+
+.order-image {
+  height: 50px;
+  width: 50px;
+}
+
+.order-image > img {
+  height: 100%;
+  width: 100%;
+}
+
+.prices {
+  display: flex;
+  flex-direction: column;
+  margin: 0 5px 0 5px;
+  padding: 5px 100px;
+  background-color: #eee;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: start;
+  padding-bottom: 35px;
+  border-bottom: 10px solid var(--bone)
+}
+
+.money {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 5px;
+}
+
+.money h3,
+.prices h4 {
+  margin: 20px 10px 0 0;
+}
+
+.back-to-profile {
+  background-color: var(--yellow);
+  color: rgb(255, 255, 255);
+  margin: 15px 50%;
+  transform: translateX(-50%);
+  padding: 15px 65px;
+  width: 20%;
+  text-align: center;
+  border: none;
+  border-radius: 15px;
+  outline: none;
+  transition: background-color 0.3s ease 0s;
+}
+
+.back-to-profile:hover {
+  background-color: var(--lilac);
+}
+
+
 /*---------------------------- GALLERY ----------------------------*/
 .gallery {
   width: 80%;
@@ -702,11 +805,26 @@ form > div > select:focus {
   background-color: var(--orange);
 }
 
-.addToCart {
+.formToCart {
+  flex-direction: column;
+  border-radius: 0;
+  box-shadow: none;
+  flex-direction: row;
   position: absolute;
-  bottom: 25%;
-  left: 68%;
-  padding: 15px 65px;
+  left: 50%;
+  margin: 0;
+  bottom: 20%;
+  padding: 0;
+  width: 35%;
+}
+
+.selectAddCart {
+  margin-left: 15px;
+    padding: 10px 20px;
+}
+
+.addToCart {
+  padding: 10px 30px;
   transform: translateX(-50%);
   border-radius: 50px;
   border: none;
@@ -714,6 +832,7 @@ form > div > select:focus {
   color: var(--bone);
   transition: background-color 0.3s ease 0s;
   cursor: pointer;
+  margin-left: 80px;
 }
 
 .addToCart:hover {
@@ -721,15 +840,15 @@ form > div > select:focus {
 }
 
 .back-to-vote {
-  display: inline-block;
   background-color: var(--magenta);
   color: rgb(255, 255, 255);
-  margin: 15px 50%;
-  padding: 15px 65px;
+  margin: 0 auto;
   border: none;
   border-radius: 15px;
   outline: none;
   transition: background-color 0.3s ease 0s;
+  height: 50px;
+  width: 15%;
 }
 
 .back-to-vote:hover {
@@ -890,6 +1009,7 @@ form > div > select:focus {
     height: 40px;
     padding: 10px 5px 0 5px;
     color: #fff;
+    width: 190px;
   }
 
   .img-wrapper {
@@ -900,11 +1020,14 @@ form > div > select:focus {
     display: none;
   }
 
+
   .cart-text,
   .profile-text,
   .logout-text,
   .login-text,
-  .signup-text {
+  .signup-text,
+  .buy-text,
+  .vote-text {
     display: none;
   }
 
@@ -912,7 +1035,9 @@ form > div > select:focus {
   .profile-icon,
   .logout-icon,
   .login-icon,
-  .signup-icon {
+  .signup-icon,
+  .vote-icon,
+  .buy-icon {
     display: inline-block;
     padding: 0 5px 0 5px;
     font-size: 1rem;

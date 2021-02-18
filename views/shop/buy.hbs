@@ -3,9 +3,9 @@
 <a href="/products" class="back-to-buy">Back</a>
 
 {{#if logged}}
-<form class="addToCart" action='/cart' method='POST'>
+<form class="formToCart flex" action='/cart' method='POST'>
     <h3>Price: {{data.price}}€</h3>
-    <select name='quantity'>
+    <select class="selectAddCart" name='quantity'>
       <option disabled selected> Quantity</option>
       <option value="1">1</option>
       <option value="2">2</option>
@@ -15,7 +15,7 @@
     </select>
     <input type='text' name='designId' value={{data._id}} style="display: none">
 
-    <button type='submit'>Add to cart</button>
+    <button class="addToCart" type='submit'>Add to cart</button>
 </form>
 
 {{else}}
