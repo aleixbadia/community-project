@@ -11,6 +11,9 @@ const orderSchema = new Schema(
         quantity: Number,
       },
     ],
+    subtotal: Number,
+    shipping: Number,
+    total: Number
   },
   {
     timestamps: {

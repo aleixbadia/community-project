@@ -11,7 +11,6 @@ const saltRounds = 10;
 let userIds = [];
 let designIds = [];
 
-
 // MONGOOSE CONNECTION
 // 1. CONNECT TO DB
 mongoose
@@ -328,7 +327,7 @@ mongoose
           "https://i.picsum.photos/id/68/500/500.jpg?hmac=pKyI0LMvS_HyH_vx_jWvbwbytO_vxmfxFsrjvX9X5D8",
         name: "Winter by the sea",
         description: "You can find peace in the less expected places",
-        price: 9.50,
+        price: 9.5,
       },
       {
         userId: ids[6],
@@ -361,7 +360,7 @@ mongoose
         name: "What is left behind",
         description:
           "Change is a constant, and this is what I left behind a long time ago",
-          price: 12.35,
+        price: 12.35,
       },
       {
         userId: ids[1],
@@ -710,6 +709,9 @@ mongoose
           { designId: designIds[1], quantity: 2 },
           { designId: designIds[2], quantity: 1 },
         ],
+        subtotal: 65.34,
+        shipping: 3,
+        total: 68.34,
       },
       {
         userId: userIds[19],
@@ -719,10 +721,16 @@ mongoose
           { designId: designIds[11], quantity: 2 },
           { designId: designIds[12], quantity: 3 },
         ],
+        subtotal: 35.34,
+        shipping: 3,
+        total: 38.34,
       },
       {
         userId: userIds[19],
         cart: [{ designId: designIds[7], quantity: 3 }],
+        subtotal: 15.34,
+        shipping: 3,
+        total: 18.34,
       },
       {
         userId: userIds[19],
@@ -732,10 +740,16 @@ mongoose
           { designId: designIds[5], quantity: 2 },
           { designId: designIds[6], quantity: 2 },
         ],
+        subtotal: 55.34,
+        shipping: 3,
+        total: 58.34,
       },
       {
         userId: userIds[19],
         cart: [{ designId: designIds[12], quantity: 3 }],
+        subtotal: 25.34,
+        shipping: 3,
+        total: 28.34,
       },
     ];
 

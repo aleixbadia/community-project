@@ -1,3 +1,4 @@
+{{#if user.display}}
 <h2>This is your cart</h2>
 <ul>
     {{#each user.currentCart}}
@@ -13,13 +14,15 @@
     </li>
     {{/each}}
 </ul>
-<h4>Cart total = {{user.currentCartV}}€</h4>
+
+<h4>Cart total = {{user.subtotal}}€</h4>
 <h4>Shipping = {{user.shipping}}€</h4>
-<h3>TOTAL = {{user.finalCost}}€</h3>
-
-STRIPE KEY IS: {{stripePK}}
-
+<h3>TOTAL = {{user.total}}€</h3>
 <button type="button" id="checkout-button">Checkout</button>
+
+{{else}}
+<h2>Your cart is empty</h2>
+{{/if}}
 
 
 <script type='text/javascript'>
