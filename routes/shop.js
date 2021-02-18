@@ -64,6 +64,7 @@ router.get("/products", async (req, res, next) => {
         data.push(design);
       }
     });
+    data.reverse();
     res.render("shop/gallery", { logged, data });
   } catch (err) {
     console.log(err);
@@ -75,7 +76,7 @@ router.get("/products/:designId", async (req, res, next) => {
     const logged = await checkLogin(req);
     const data = await Design.findById(req.params.designId).populate("userId");
     let votesFound = await Vote.find();
-    
+
     data.votes = 0;
     data.rating = 0;
 
@@ -99,6 +100,7 @@ router.get("/vote", async (req, res, next) => {
     data.forEach((design) => {
       design.vote = true;
     });
+    data.reverse();
     res.render("shop/gallery", { logged, data });
   } catch (error) {
     console.log(err);
@@ -109,11 +111,11 @@ router.get("/vote/:designId", async (req, res, next) => {
   try {
     let availableToVote = true;
     let userId;
-    
+
     const logged = await checkLogin(req);
     const data = await Design.findById(req.params.designId).populate("userId");
     let votesFound = await Vote.find();
-    
+
     data.votes = 0;
     data.rating = 0;
 
@@ -163,25 +165,32 @@ router.get("/cart", async (req, res, next) => {
   try {
     const logged = await checkLogin(req);
     const id = logged._id;
-    let total = 0;
+    let subtotal = 0;
+    let products = 0;
 
     res.locals.stripePK = process.env.STRIPE_PUBLIC_KEY;
 
     const user = await User.findById(id).populate("currentCart.designId");
 
-    user.currentCart.forEach((product) => {
-      product.subtotal = product.quantity * product.designId.price;
-      total += product.subtotal;
-    });
-    user.currentCartV = total;
-    user.shipping = shipping;
-    user.finalCost = total + shipping;
-    res.render("shop/cart", { logged, user });
+    if (user.currentCart.length !== 0) {
+      user.currentCart.forEach((product) => {
+        subtotal +=
+          Math.round(
+            (product.quantity * product.designId.price + Number.EPSILON) * 1000
+          ) / 1000;
+        products += product.quantity;
+      });
+      user.subtotal = subtotal;
+      user.shipping = shipping * products;
+      user.total = subtotal + user.shipping;
+      user.display = true;
+    } else {
+      user.display = false;
+    }
 
-    const data = await Design.findById(req.params.designId).populate("userId");
-    res.render("shop/buy", { logged, data });
+    res.render("shop/cart", { logged, user });
   } catch (error) {
-    console.log(err);
+    console.log(error);
   }
 });
 
@@ -190,7 +199,7 @@ router.post("/cart", async (req, res, next) => {
     const id = req.session.currentUser._id;
     const { quantity, designId } = req.body;
 
-    const user = await User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       { _id: id },
       { $push: { currentCart: { quantity, designId } } }
     );
@@ -221,29 +230,43 @@ router.get("/checkout", async (req, res, next) => {
   try {
     const logged = await checkLogin(req);
     const userId = req.session.currentUser._id;
-  
+    let subtotal = 0;
+
     //TAKE CURRENT CART INFO
     const user = await User.findById(userId).populate("currentCart.designId");
-    const cart = user.currentCart;
-    cart.forEach(async (item) => {
-      const updatedPoints = await User.findByIdAndUpdate(
+
+    user.currentCart.forEach(async (item) => {
+      subtotal +=
+        Math.round(
+          (item.quantity * item.designId.price + Number.EPSILON) * 100
+        ) / 100;
+
+      await User.findByIdAndUpdate(
         item.designId.userId,
         { $inc: { com_points: 100 } },
         { new: true }
       );
-      console.log(updatedPoints);
     });
+    let finalShipping = shipping * user.currentCart.length;
+    let total = subtotal + finalShipping;
+
     //CREATE THE ORDER WITH CART INFO
-    await Order.create({ userId, cart });
-  
+    await Order.create({
+      userId,
+      cart : user.currentCart,
+      subtotal,
+      shipping: finalShipping,
+      total,
+    });
+
     //CLEAR USER CURRENT CART
     await User.findByIdAndUpdate(userId, { currentCart: [] }, { new: true });
-  
+
     //ADD COMPOINTS TO DESIGNER
-  
+
     res.render("shop/checkout", { logged });
   } catch (error) {
-    console.log(err);
+    console.log(error);
   }
 });
 
