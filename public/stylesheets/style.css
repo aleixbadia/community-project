@@ -370,15 +370,24 @@ form > div > select:focus {
 
 /*---------------------------- CART ----------------------------*/
 
+.cart-h2 {
+  text-align: center;
+  margin: 60px 20px;
+  font-size: 2rem;
+}
+
+.all-cart {
+  width: 100vw;
+  align-items: flex-start;
+}
+
 .all-products {
-  border: 1px solid red;
-  width: 90%;
+  width: 70%;
   margin: 0 auto;
 }
 
 .single-product {
-  border: 1px solid green;
-  width: 90%;
+  width: 100%;
   margin: 20px auto;
   flex-direction: row;
 }
@@ -420,8 +429,59 @@ form > div > select:focus {
 }
 
 .single-product > form > button {
-  width: 20%;
   text-align: center;
+}
+
+.delete-from-cart {
+  background-color: crimson;
+  text-align: center;
+  width: 100px;
+  height: 50px;
+  padding: 0;
+}
+
+.checkout {
+  width: 30%;
+  padding: 20px 0 20px 60px;
+  margin: 25px auto;
+  border-left: 5px solid var(--black);
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.checkout h4,
+.checkout h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.checkout-btn {
+  border: none;
+  border-radius: 15px;
+  background-color: #ffae42;
+  color: var(--black);
+  padding: 15px 45px; 
+}
+
+
+.confirmation-btn {
+  border: none;
+  border-radius: 15px;
+  background-color: var(--black);
+  color: var(--bone);
+  padding: 15px 45px; 
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 35%;
+}
+
+
+.confirmation-h2 {
+  text-align: center;
+  margin: 160px 20px;
+  font-size: 2rem;
 }
 /*---------------------------- USER PROFILE ----------------------------*/
 
