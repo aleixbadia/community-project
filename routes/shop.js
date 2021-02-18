@@ -174,10 +174,11 @@ router.get("/cart", async (req, res, next) => {
 
     if (user.currentCart.length !== 0) {
       user.currentCart.forEach((product) => {
-        subtotal +=
+        product.productSubtotal =
           Math.round(
             (product.quantity * product.designId.price + Number.EPSILON) * 1000
           ) / 1000;
+        subtotal += product.productSubtotal;
         products += product.quantity;
       });
       user.subtotal = subtotal;
@@ -253,7 +254,7 @@ router.get("/checkout", async (req, res, next) => {
     //CREATE THE ORDER WITH CART INFO
     await Order.create({
       userId,
-      cart : user.currentCart,
+      cart: user.currentCart,
       subtotal,
       shipping: finalShipping,
       total,
