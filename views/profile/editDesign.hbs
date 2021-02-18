@@ -1,4 +1,4 @@
-<form class="edit-design-form" action='/profile/edit/{{design._id}}' method='POST'>
+<form class="edit-design-form" enctype="multipart/form-data" action='/profile/edit/{{design._id}}' method='POST'>
 
 <div class="design-name flex">
   <label for=''><i class="fas fa-quote-left"></i></label>
@@ -12,7 +12,7 @@
 
 <div class="design-link flex">
   <label for=''><i class="fas fa-camera-retro"></i></label>
-  <input type='text' name='url' value="{{design.url}}">
+  <input  class="upload-file" type="file" name="image" id="image-input" class="form-control-file" />
 </div>
 
   <button class="edit-design" type='submit'>Edit Design</button>
@@ -20,7 +20,6 @@
   <a class="backToProfile" href="/profile">Back to profile</a>
 
   <form class="delete-design" action="/profile/edit/{{design._id}}/delete" method="POST">
-    <input type='text' name='id' value="{{design._id}}">
     <button class="delete-design-btn" type='submit'>Delete this design</button>
   </form>
 

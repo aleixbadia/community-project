@@ -106,10 +106,12 @@ body {
 
 .userform li > a {
   margin: 0;
-  display: inline-block;
   height: 60px;
-  padding: 16px 30px 0 30px;
+  padding: 16px 30px 16px 30px;
   color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .userform li > a:hover {
@@ -121,6 +123,42 @@ body {
   color: #fff;
 }
 
+.nav-bar-img-wrapper > a {
+  height: 60px;
+  width: 60px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.nameImgLink {
+  display: flex;
+  flex-direction: row;
+}
+
+.img-link {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.navbar-img-container {
+  margin-left: 15px;
+  height: 60px;
+  width: 60px;
+}
+
+.navbar-img-container > img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.upload-file {
+  display: flex;
+  align-items: center;
+  padding-top: 5px;
+}
 /*---------------------------- MAIN PAGE ----------------------------*/
 .main-h1 {
   text-align: center;
@@ -178,6 +216,22 @@ body {
 
 .join > a:hover {
   background-color: var(--lilac);
+}
+
+.error-message {
+  background-color: var(--bone);
+    height: 6%;
+    width: 20%;
+    text-align: center;
+    align-content: center;
+    padding: 10px 15px 10px 15px;
+    border-radius: 15px;
+    color: red;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 10%;
+    font-size: 1rem;
 }
 
 /*---------------------------- SIGNUP FORM ----------------------------*/
@@ -430,22 +484,35 @@ form > div > select:focus {
   margin: 30px auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
+.gallery::after {
+  content: "";
+  margin-right: 15px;
+  margin: 30px auto;
+  flex: auto;
+}
+
 .card {
-  width: 23%;
+  /* width: 23%; */
+  flex: 0 0 20%;
   height: 50vh;
-  margin-bottom: 20px;
+  margin: 1% 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   padding: 25px 15px;
   background-color: var(--bone);
-  border-radius: 50px;
-  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.6);
+  border-radius: 30px;
+  box-shadow: 3px 3px 3px 0px rgba(0, 0, 0, 0.6);
+}
+
+.card::after{
+  content: "";
+  margin: 1% 20px;
 }
 
 .card > h3 {
@@ -718,17 +785,78 @@ form > div > select:focus {
 .thumbs-form-input {
   display: none;
 }
-/*---------------------------- FOOTER ----------------------------*/
-
-footer {
+/*---------------------------- FAQ PAGE ----------------------------*/
+.faq-wrapper {
   background-color: var(--bone);
-  color: var(--black);
-  position: absolute;
-  bottom: -60px;
-  width: 100%;
-  height: 10px;
-  text-align: center;
+  border-radius: 15px;
+  margin: 0 auto;
+  height: 80vh;
+  width: 80%;
+  flex-direction: column;
+  justify-content: space-around;
 }
+
+.faq-wrapper h2 {
+  font-size: 2rem
+}
+
+.faq-wrapper ul {
+  display: flex;
+}
+
+.faq-wrapper  li {
+  flex-direction: column;
+  justify-content: start;
+  margin: 0 20px;
+  width: calc(100% / 3)
+}
+
+.faq-wrapper  li > span {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+
+.faq-wrapper  li > p {
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+.faq-wrapper > footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.faq-wrapper > footer a > i{
+  margin-left: 25px;
+  font-size: 2.5rem;
+  color: var(--black)
+}
+
+
+.faq-wrapper > footer a > i:hover{
+  margin-left: 25px;
+  font-size: 2.5rem;
+  color: var(--lilac)
+}
+
+.faq1:hover {
+  color: var(--cyan);
+}
+
+.faq2:hover {
+  color: var(--magenta);
+}
+
+.faq3:hover {
+  color: var(--yellow);
+}
+
+/*---------------------------- FOOTER ----------------------------*/
 
 /*---------------------------- MEDIA QUERIES ----------------------------*/
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
@@ -902,152 +1030,4 @@ footer {
     padding: 5px 20px;
   }
 
-  .userform > ul {
-    /* position: absolute;
-    right: 85px;
-    top: 0px; */
-  }
-}
-
- /*---------------------------- PAYMENT STRIPE ----------------------------*/
-
-.stripe-form {
-  width: 30vw;
-  min-width: 500px;
-  align-self: center;
-  box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),
-    0px 2px 5px 0px rgba(50, 50, 93, 0.1), 0px 1px 1.5px 0px rgba(0, 0, 0, 0.07);
-  border-radius: 7px;
-  padding: 40px;
-}
-input {
-  border-radius: 6px;
-  margin-bottom: 6px;
-  padding: 12px;
-  border: 1px solid rgba(50, 50, 93, 0.1);
-  height: 44px;
-  font-size: 16px;
-  width: 100%;
-  background: white;
-}
-.result-message {
-  line-height: 22px;
-  font-size: 16px;
-}
-.result-message a {
-  color: rgb(89, 111, 214);
-  font-weight: 600;
-  text-decoration: none;
-}
-.hidden {
-  display: none;
-}
-#card-error {
-  color: rgb(105, 115, 134);
-  text-align: left;
-  font-size: 13px;
-  line-height: 17px;
-  margin-top: 12px;
-}
-#card-element {
-  border-radius: 4px 4px 0 0 ;
-  padding: 12px;
-  border: 1px solid rgba(50, 50, 93, 0.1);
-  height: 44px;
-  width: 100%;
-  background: white;
-}
-#payment-request-button {
-  margin-bottom: 32px;
-}
-/* Buttons and links */
-.stripe-button {
-  background: #5469d4;
-  color: #ffffff;
-  font-family: Arial, sans-serif;
-  border-radius: 0 0 4px 4px;
-  border: 0;
-  padding: 12px 16px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  display: block;
-  transition: all 0.2s ease;
-  box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
-  width: 100%;
-}
-.stripe-button:hover {
-  filter: contrast(115%);
-}
-.stripe-button:disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-/* spinner/processing state, errors */
-.spinner,
-.spinner:before,
-.spinner:after {
-  border-radius: 50%;
-}
-.spinner {
-  color: #ffffff;
-  font-size: 22px;
-  text-indent: -99999px;
-  margin: 0px auto;
-  position: relative;
-  width: 20px;
-  height: 20px;
-  box-shadow: inset 0 0 0 2px;
-  -webkit-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  transform: translateZ(0);
-}
-.spinner:before,
-.spinner:after {
-  position: absolute;
-  content: "";
-}
-.spinner:before {
-  width: 10.4px;
-  height: 20.4px;
-  background: #5469d4;
-  border-radius: 20.4px 0 0 20.4px;
-  top: -0.2px;
-  left: -0.2px;
-  -webkit-transform-origin: 10.4px 10.2px;
-  transform-origin: 10.4px 10.2px;
-  -webkit-animation: loading 2s infinite ease 1.5s;
-  animation: loading 2s infinite ease 1.5s;
-}
-.spinner:after {
-  width: 10.4px;
-  height: 10.2px;
-  background: #5469d4;
-  border-radius: 0 10.2px 10.2px 0;
-  top: -0.1px;
-  left: 10.2px;
-  -webkit-transform-origin: 0px 10.2px;
-  transform-origin: 0px 10.2px;
-  -webkit-animation: loading 2s infinite ease;
-  animation: loading 2s infinite ease;
-}
-@-webkit-keyframes loading {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
-}
-@keyframes loading {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-  }
 }
