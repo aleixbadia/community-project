@@ -194,8 +194,9 @@ body {
 .buy,
 .vote,
 .join {
+  margin-top: 1px;
   width: calc(100% / 3);
-  height: 450px;
+  height: 71vh;
 }
 
 .buy {
@@ -502,7 +503,7 @@ form > div > select:focus {
   margin: 15px auto;
   padding: 5px 0;
   border-radius: 50px;
-  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.6);
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.6);
 }
 
 .info {
@@ -725,6 +726,31 @@ form > div > select:focus {
 
 
 /*---------------------------- GALLERY ----------------------------*/
+.searchbar {
+  flex-direction: row;
+  width: 76%;
+  border-radius: 15px;
+  box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.6);
+}
+
+.searchbar > input {
+  padding: 8px;
+  width: 40%;
+  text-align: center;
+}
+
+.searchbar > button:active {
+  transform: scale(0.98%)
+}
+
+.sb-vote > button:hover {
+  background-color: var(--magenta)
+}
+
+.sb-buy > button:focus {
+  background-color: var(--cyan)
+}
+
 .gallery {
   width: 80%;
   margin: 30px auto;

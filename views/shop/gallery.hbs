@@ -1,10 +1,10 @@
 {{#if products}}
-<form action='/products' method='GET'>
+<form action='/products' class="searchbar sb-buy flex" method='GET'>
   <input type='text' name='search' placeholder="Search something">
   <button type='submit'>Find a design</button>
 </form>
 {{else}}
-<form action='/vote' method='GET'>
+<form action='/vote' class="searchbar sb-vote flex" method='GET'>
   <input type='text' name='search' placeholder="Search something">
   <button type='submit'>Find a design</button>
 </form>
