@@ -1232,6 +1232,9 @@ form > div > select:focus {
     display: none;
   }
 
+  .cta-btns > div {
+    margin-top: 0px;
+  }
 
   .cart-text,
   .profile-text,
@@ -1263,6 +1266,8 @@ form > div > select:focus {
     height: 40px;
     padding: 10px 5px 0 5px;
   }
+
+
 
   /*---------------------------- MAIN PAGE ----------------------------*/
   .page-wrapper {
