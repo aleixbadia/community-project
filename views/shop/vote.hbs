@@ -25,11 +25,8 @@
 {{/if}}
 
 {{#unless logged}}
-<div class="vote-product flex">
-    <div class="thumbs-wrapper flex">
-        <a class="up" href="/auth/login"><i class="fas fa-thumbs-up"></i></a>
-        <a class="down" href="/auth/login"><i class="fas fa-thumbs-down"></i></a>
-    </div>
+<div class="unlogged vote-btn flex">
+    <a href="/auth/login">Vote</a>
 </div>
 {{/unless}}
 

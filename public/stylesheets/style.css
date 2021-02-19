@@ -460,7 +460,18 @@ form > div > select:focus {
   border-radius: 15px;
   background-color: #ffae42;
   color: var(--black);
-  padding: 15px 45px; 
+  padding: 15px 45px;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.checkout-btn:hover {
+  background-color: rgba(255, 174, 66, 0.6)
+}
+
+.checkout-btn:active {
+  transform: scale(0.98%);
 }
 
 
@@ -842,6 +853,7 @@ form > div > select:focus {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  margin-top: -20px;
 }
 
 .designer-data > a {
@@ -888,6 +900,15 @@ form > div > select:focus {
 
 .product-details > p {
   font-size: 1.2rem;
+}
+
+.votes-result {
+  margin-top: -15px;
+  margin-bottom: 25px;
+}
+.votes-result h2 {
+  font-size: 1rem;
+  margin-right: 25px
 }
 
 /*---------------------------- PUBLIC PROFILE ----------------------------*/
@@ -974,7 +995,7 @@ form > div > select:focus {
 .back-to-vote {
   background-color: var(--magenta);
   color: rgb(255, 255, 255);
-  margin: 0 auto;
+  margin: 30px auto;
   border: none;
   border-radius: 15px;
   outline: none;
@@ -1043,6 +1064,40 @@ form > div > select:focus {
 .thumbs-form-input {
   display: none;
 }
+
+.vote-btn {
+  padding: 10px 50px;
+  transform: translateX(-50%);
+  border-radius: 50px;
+  border: none;
+  background-color: var(--black);
+  color: var(--bone);
+  transition: background-color 0.3s ease 0s;
+  cursor: pointer;
+  margin-left: 80px;
+}
+
+.vote-btn:hover {
+  background-color: var(--magenta);
+}
+
+.vote-btn:active {
+  transform: scale(0.98%);
+}
+
+.vote-btn > a {
+  color: var(--bone);
+}
+
+.vote-btn:visited > a {
+  color: var(--bone);
+}
+
+.unlogged {
+  position: absolute;
+  left: 58%;
+  bottom: 26%;
+}
 /*---------------------------- FAQ PAGE ----------------------------*/
 .faq-wrapper {
   background-color: var(--bone);
@@ -1094,7 +1149,6 @@ form > div > select:focus {
   font-size: 2.5rem;
   color: var(--black)
 }
-
 
 .faq-wrapper > footer a > i:hover{
   margin-left: 25px;
