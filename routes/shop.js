@@ -26,7 +26,26 @@ const checkLogin = async (req) => {
 router.get("/", async (req, res, next) => {
   try {
     const logged = await checkLogin(req);
-    res.render("main", { logged });
+    const designsFound = await Design.find();
+    const votesFound = await Vote.find();
+    let data = [];
+
+    designsFound.forEach((design) => {
+      rating = 0;
+      votesByDesign = 0;
+      votesFound.forEach((vote) => {
+        if (String(design._id) === String(vote.designId)) {
+          //Calculation of total votes and rating
+          votesByDesign++;
+          rating += vote.rating;
+        }
+      });
+      if (votesByDesign > minVotes && rating > votesByDesign * minRating) {
+        data.push(design);
+      }
+    });
+
+    res.render("main", { logged, data });
   } catch (error) {
     console.log(error);
   }
