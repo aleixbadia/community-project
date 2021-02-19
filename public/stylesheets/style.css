@@ -1221,7 +1221,11 @@ form > div > select:focus {
     height: 40px;
     padding: 10px 5px 0 5px;
     color: #fff;
-    width: 190px;
+    width: 160px;
+  }
+
+  .userform {
+    padding-bottom: 10px;
   }
 
   .img-wrapper {
@@ -1230,10 +1234,6 @@ form > div > select:focus {
 
   .img-wrapper > img {
     display: none;
-  }
-
-  .cta-btns > div {
-    margin-top: 0px;
   }
 
   .cart-text,
@@ -1283,15 +1283,16 @@ form > div > select:focus {
   }
 
   .cta-btns {
+    margin-top: 3px;
     flex-direction: column;
-    height: 67vh;
+    height: 72vh;
   }
-
   .buy,
   .vote,
   .join {
     height: calc(100% / 3);
     width: 100%;
+    margin-top: 0px;
   }
 
   .cta-btns > div > a {
@@ -1319,8 +1320,13 @@ form > div > select:focus {
 
   /*---------------------------- GALLERY ----------------------------*/
 
+  .searchbar > button {
+    padding: 5px;
+  }
+
   .gallery {
     flex-direction: column;
+    margin-left: 12px;
   }
 
   .card {
@@ -1333,17 +1339,18 @@ form > div > select:focus {
     flex-direction: column;
     padding: 5px;
     margin-top: -40px;
+    height: 80vh;
+    width: 100%;
   }
 
   .details-img {
-    width: 100%;
-    border-radius: 50px;
+    width: 80%;
+    margin: 10px auto;
   }
 
   .details-img > img {
-    margin: 0 20px;
-    width: 90%;
-    border-radius: 50px;
+    width: 100%;
+    height: 100%
   }
 
   .designer-data > span {
@@ -1356,20 +1363,36 @@ form > div > select:focus {
 
   .designer-details {
     justify-content: flex-start;
-  }
+    margin-top: 40px;  }
 
   .designer-details > div > h2 {
     font-size: 1rem;
     margin-top: 55px;
   }
 
+  .unlogged {
+    position: absolute;
+    left: 60%;
+    bottom: 16%;
+  }
+
+  .addToCart {
+    padding: 5px 20px;
+    transform: translateX(-50%);
+    border-radius: 20px;
+    border: none;
+    background-color: var(--black);
+    color: var(--bone);
+    transition: background-color 0.3s ease 0s;
+    cursor: pointer;
+    margin-left: 80px;
+    text-align: center;
+  }
+
   .product-details {
     display: none;
   }
 
-  .thumbs-wrapper {
-    margin-top: -35px;
-  }
 
   .back-to-vote {
     padding: 5px 20px;
@@ -1378,5 +1401,172 @@ form > div > select:focus {
   .back-to-buy {
     padding: 5px 20px;
   }
+
+  .gallery-profile {
+    width: 95%;
+    margin: 0;
+  }
+
+  .card-profile {
+    margin-bottom: 10px;
+  }
+
+  /*---------------------------- PROFILE ----------------------------*/
+
+  .profile {
+    height: 30%;
+    width: 90%;
+  }
+
+  .profile > div > img {
+    display: none;
+  }
+
+  .profile > div > h2 {
+    font-size: 1rem;
+  }
+
+  .profile-menu {
+    flex-direction: column;
+    margin-top: -65px;
+  }
+
+  .profile-menu > a {
+    margin: 5px auto;
+  }
+  /*---------------------------- EDIT DETAILS ----------------------------*/
+
+  .edit-user-form {
+    width: 95%;
+  }
+
+  .edit-user-form > div > input {
+    width: 30%;
+  }
+
+  .edit-user-form > div > label > i {
+    font-size: 1.5rem;
+    margin: 0 2px;
+  }
+  /*---------------------------- ORDERS ----------------------------*/
+    
+  .single-order {
+    padding: 5px;
+    text-align: center;
+  }
+  
+  /*---------------------------- UPLOAD ----------------------------*/
+
+  .edit-design-form {
+    width: 95%;
+    margin-top: 140px;
+  }
+
+    /*---------------------------- PUBLIC PROFILE ----------------------------*/
+
+    .public {
+      height: 5vh;
+      width: 95%;
+      border-radius: 15px;
+      padding: 30px 15px;
+      margin-top: -30px;
+    }
+
+    .public h2 {
+      font-size: 1rem;
+    }    
+
+    .user-profile > .public > .profile-img {
+      display:none;
+    }
+
+    /*---------------------------- VOTE PRODUCT ----------------------------*/
+
+    .thumbs-wrapper {
+      flex-direction: column;
+      margin-top: -35px;
+      margin-left: 200px;
+    }
+
+    .up > i{
+      color: var(--green);
+    }
+
+    .down > i{
+      color: var(--orange);
+    }
+
+    /*---------------------------- BUY PRODUCT ----------------------------*/
+
+    .formToCart {
+      left: 42%;
+      margin: 0;
+      bottom: -1%;
+      background: none;
+    }
+
+    .back-to-buy {
+      margin-top: 90px;
+    }
+
+    /*---------------------------- CART ----------------------------*/
+    
+    .all-cart {
+      flex-direction: column-reverse;
+    }
+
+    .all-cart > .checkout {
+      width: 95%;
+      border: none;
+      margin: 0 28px;
+    }
+
+    .single-product {
+      margin-left: -60px;
+      width: 130%;
+    }
+
+    .single-product > .product-img {
+      width: 75px;
+      height: 75px;
+    }
+
+    .delete-from-cart {
+      font-size: 0.8rem;
+      padding: 0;
+      width: 50px;
+      margin-left: 65px;
+    }
+
+    .product-text > p {
+      display: none;
+    }
+
+    /*---------------------------- CHECKOUT ----------------------------*/
+
+    .confirmation-btn {
+      margin-top: 150px;
+    }
+
+    /*---------------------------- FAQ PAGE ----------------------------*/
+
+    .faq-wrapper {
+      padding: 20px 24px;
+      width: 100%;
+      height: 100vh;
+      margin-top: -50px;    }
+
+    .faq-wrapper > h2 {
+      font-size: 1.3rem;
+      text-align: center; 
+    }
+
+    .faq-wrapper > ul {
+      flex-direction: column;
+    }
+
+    .faq-wrapper > ul > li {
+      width: 90%;
+    }
 
 }
