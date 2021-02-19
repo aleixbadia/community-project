@@ -1,3 +1,15 @@
+{{#if products}}
+<form action='/products' method='GET'>
+  <input type='text' name='search' placeholder="Search something">
+  <button type='submit'>Find a design</button>
+</form>
+{{else}}
+<form action='/vote' method='GET'>
+  <input type='text' name='search' placeholder="Search something">
+  <button type='submit'>Find a design</button>
+</form>
+{{/if}}
+
 <div class="gallery">
   {{#each data}}
   <div class="card">

@@ -28,7 +28,7 @@ router.get("/", async (req, res, next) => {
     const logged = await checkLogin(req);
     res.render("main", { logged });
   } catch (error) {
-    console.log(err);
+    console.log(error);
   }
 });
 
@@ -37,18 +37,28 @@ router.get("/business-model", async (req, res, next) => {
     const logged = await checkLogin(req);
     res.render("business-model", { logged });
   } catch (error) {
-    console.log(err);
+    console.log(error);
   }
 });
 
 router.get("/products", async (req, res, next) => {
-  let rating = 0;
-  let votesByDesign = 0;
-  let data = [];
   try {
+    const products = true;
+    let rating = 0;
+    let votesByDesign = 0;
+    let data = [];
     const logged = await checkLogin(req);
-    let designsFound = await Design.find();
+    let designsFound;
     let votesFound = await Vote.find();
+
+    if(req.query.search){
+      const designSearch = req.query.search.split(" ");
+      const regexStr = designSearch.join("|");
+  
+      designsFound = await Design.find({ name: { $regex: regexStr, $options: "i"}});
+    } else {
+      designsFound = await Design.find();
+    }
 
     designsFound.forEach((design) => {
       rating = 0;
@@ -65,9 +75,9 @@ router.get("/products", async (req, res, next) => {
       }
     });
     data.reverse();
-    res.render("shop/gallery", { logged, data });
-  } catch (err) {
-    console.log(err);
+    res.render("shop/gallery", { logged, data, products });
+  } catch (error) {
+    console.log(error);
   }
 });
 
@@ -89,21 +99,30 @@ router.get("/products/:designId", async (req, res, next) => {
     });
     res.render("shop/buy", { logged, data });
   } catch (error) {
-    console.log(err);
+    console.log(error);
   }
 });
 
 router.get("/vote", async (req, res, next) => {
   try {
     const logged = await checkLogin(req);
-    const data = await Design.find();
+    let data;
+    if(req.query.search){
+      const designSearch = req.query.search.split(" ");
+      const regexStr = designSearch.join("|");
+  
+      data = await Design.find({ name: { $regex: regexStr, $options: "i"}});
+    } else {
+      data = await Design.find();
+    }
+
     data.forEach((design) => {
       design.vote = true;
     });
     data.reverse();
     res.render("shop/gallery", { logged, data });
   } catch (error) {
-    console.log(err);
+    console.log(error);
   }
 });
 
@@ -144,8 +163,8 @@ router.get("/vote/:designId", async (req, res, next) => {
     }
 
     res.render("shop/vote", { logged, availableToVote, data });
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 });
 
@@ -156,8 +175,8 @@ router.post("/vote/:designId", async (req, res, next) => {
     await Vote.create({ userId, designId, rating });
     await User.findByIdAndUpdate(userId, { $inc: { com_points: 10 } });
     res.redirect("/vote");
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 });
 
@@ -208,7 +227,7 @@ router.post("/cart", async (req, res, next) => {
 
     res.redirect("/products");
   } catch (error) {
-    console.log(err);
+    console.log(error);
   }
 });
 
@@ -224,7 +243,7 @@ router.post("/cart/delete", async (req, res, next) => {
 
     res.redirect("/cart");
   } catch (error) {
-    console.log(err);
+    console.log(error);
   }
 });
 
@@ -305,8 +324,8 @@ router.get("/user/:userId", async (req, res, next) => {
       designsToBuy,
       designsToVote,
     });
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 });
 
