@@ -35,12 +35,12 @@
         <li class="cart-icon flex"><a href="/cart"><i class="fas fa-shopping-cart"></i></a></li>
         <li class="profile-icon flex"><a href="/profile"><i class="fas fa-user"></i></a></li>
         {{#unless profile}}
-        <li class="profile-text flex"> 
+        <li class="profile-text flex">
           <a href="/profile" class="nameImgLink">
-          <p>{{logged.name.firstName}} {{logged.name.lastName}}</p>
-          <div class="navbar-img-container">
-            <img src="{{logged.picture}}" alt="user-picture">
-          </div>
+            <p>{{logged.name.firstName}} {{logged.name.lastName}}</p>
+            <div class="navbar-img-container">
+              <img src="{{logged.picture}}" alt="user-picture">
+            </div>
           </a>
         </li>
         {{/unless}}
@@ -83,6 +83,49 @@
   {{!-- <footer class="footer flex">
     <p>Designed and developed by Aleix Badia & Fede Muniente at Ironhack Barcelona | &copy; 2021</p>
   </footer> --}}
+
+  <script>
+    (function (apiKey) {
+      (function (p, e, n, d, o) {
+        var v, w, x, y, z;
+        o = p[d] = p[d] || {};
+        o._q = o._q || [];
+        v = ['initialize', 'identify', 'updateOptions', 'pageLoad', 'track']; 
+        for (w = 0, x = v.length; w < x; ++w)(function (m) {
+          o[m] = o[m] || function () { o._q[m === v[0] ? 'unshift' : 'push']([m].concat([].slice.call(arguments, 0))); };
+        })(v[w]);
+        y = e.createElement(n); y.async = !0; y.src = 'https://cdn.eu.pendo.io/agent/static/' + apiKey + '/pendo.js';
+        z = e.getElementsByTagName(n)[0]; z.parentNode.insertBefore(y, z);
+      })(window, document, 'script', 'pendo');
+
+      // Call this whenever information about your visitors becomes available
+      // Please use Strings, Numbers, or Bools for value types.
+      pendo.initialize({
+        visitor: {
+          id: 'VISITOR-UNIQUE-ID'   // Required if user is logged in
+          // email:        // Recommended if using Pendo Feedback, or NPS Email
+          // full_name:    // Recommended if using Pendo Feedback
+          // role:         // Optional
+
+          // You can add any additional visitor level key-values here,
+          // as long as it's not one of the above reserved names.
+        },
+
+        account: {
+          id: 'ACCOUNT-UNIQUE-ID' // Required if using Pendo Feedback
+          // name:         // Optional
+          // is_paying:    // Recommended if using Pendo Feedback
+          // monthly_value:// Recommended if using Pendo Feedback
+          // planLevel:    // Optional
+          // planPrice:    // Optional
+          // creationDate: // Optional
+
+          // You can add any additional account level key-values here,
+          // as long as it's not one of the above reserved names.
+        }
+      });
+    })('576c357b-57a8-4483-7cb7-f8b3c6cd12b4');
+  </script>
 </body>
 
 </html>
